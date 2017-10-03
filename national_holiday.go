@@ -1,4 +1,4 @@
-package main
+package national_holiday
 
 import (
 	"time"

@@ -24,7 +24,7 @@ func (nh NationalHoliday) isOrLater(t time.Time) bool {
 	return pt.After(t) || pt.Equal(t)
 }
 
-func isNationalHoliday(t time.Time) (bool, error) {
+func IsNationalHoliday(t time.Time) (bool, error) {
 	nationalHolidays, err := fetchNationalHolidays()
 	if err != nil {
 		return false, err

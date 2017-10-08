@@ -1,5 +1,6 @@
 # goholiday
 
+<<<<<<< HEAD
 [![v0.1.2](https://img.shields.io/badge/package-v0.1.2-ff69b4.svg)](https://github.com/yut-kt/goholiday/tree/v0.1.2)
 [![GoDoc](https://godoc.org/github.com/yut-kt/goholiday?status.svg)](https://godoc.org/github.com/yut-kt/goholiday)
 [![license](http://img.shields.io/badge/license-MIT-red.svg?style=flat)](https://raw.githubusercontent.com/yut-kt/goholiday/v0.1.0/LICENSE)
@@ -7,6 +8,9 @@
 
 **Functions to calculate and judge about business days in Japan.**
 Now we are dealing with only Japanese holidays but we plan to deal with other national holidays.
+=======
+[![GoDoc](https://godoc.org/github.com/yut-kt/goholiday?status.svg)](https://godoc.org/github.com/yut-kt/goholiday)
+>>>>>>> [add]godoc
 
 ## Install
 ```bash

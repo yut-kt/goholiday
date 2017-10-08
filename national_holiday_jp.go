@@ -1,14 +1,17 @@
+// Packages goholiday provides Package ome simple calcuration functions.
+// These are functions to calculate business days.
 package goholiday
 
 import (
-	"github.com/holiday-jp/config"
-	"github.com/holiday-jp/entity"
-	"gopkg.in/yaml.v2"
-	"io/ioutil"
 	"sort"
 	"time"
+	"github.com/goholiday/entity"
+	"io/ioutil"
+	"gopkg.in/yaml.v2"
+	"github.com/goholiday/config"
 )
 
+// IsNationalHoliday is a function to decide whether t given national holiday.
 func IsNationalHoliday(t time.Time) bool {
 	nationalHolidays, err := fetchNationalHolidays()
 	if err != nil {
@@ -19,16 +22,19 @@ func IsNationalHoliday(t time.Time) bool {
 	return nationalHolidays[index].Date == t.Format(config.DateFormat)
 }
 
-func IsWeekDay(t time.Time) bool {
+// IsBusinessDay is a function to decide whether t given business day.
+func IsBusinessDay(t time.Time) bool {
 	return t.Weekday() != time.Saturday && t.Weekday() != time.Sunday && !IsNationalHoliday(t)
 }
 
-func BusinessDaysBefore(t time.Time, businessDays int) time.Time {
-	return travelBusinessDays(t, businessDays, false)
+// BusinessDaysBefore is a function that calculates bds business days before given t
+func BusinessDaysBefore(t time.Time, bds int) time.Time {
+	return travelBusinessDays(t, bds, false)
 }
 
-func BusinessDaysAfter(t time.Time, businessDays int) time.Time {
-	return travelBusinessDays(t, businessDays, true)
+// BusinessDaysAfter is a function that calculates bds business days after given t
+func BusinessDaysAfter(t time.Time, bds int) time.Time {
+	return travelBusinessDays(t, bds, true)
 }
 
 func travelBusinessDays(date time.Time, businessDays int, isTravelFuture bool) time.Time {
@@ -36,7 +42,7 @@ func travelBusinessDays(date time.Time, businessDays int, isTravelFuture bool) t
 
 	for tbds := 0; tbds != businessDays; {
 		date = date.AddDate(0, 0, course)
-		if IsWeekDay(date) {
+		if IsBusinessDay(date) {
 			tbds++
 		}
 	}

@@ -1,9 +1,9 @@
 package goholiday
 
 import (
-	"github.com/holiday-jp/config"
 	"testing"
 	"time"
+	"github.com/goholiday/config"
 )
 
 const (
@@ -50,7 +50,7 @@ func BenchmarkIsNationalHoliday(b *testing.B) {
 	}
 }
 
-func TestIsWeekDay(t *testing.T) {
+func TestIsBusinessDay(t *testing.T) {
 	nationalHolidayOfWeekday, err1 := time.Parse(Fmt, "2017-10-09")
 	nationalHolidayOfHoliday, err2 := time.Parse(Fmt, "2017-09-23")
 	weekday, err3 := time.Parse(Fmt, "2017-10-10")
@@ -59,19 +59,19 @@ func TestIsWeekDay(t *testing.T) {
 		t.Error("Can`t parse date.")
 	}
 
-	if IsWeekDay(nationalHolidayOfWeekday) {
+	if IsBusinessDay(nationalHolidayOfWeekday) {
 		t.Errorf(ErrFmt, "nationalHolidayOfWeekday")
 		t.Log("nationalHolidayOfWeekday: ", nationalHolidayOfWeekday.String())
 	}
-	if IsWeekDay(nationalHolidayOfHoliday) {
+	if IsBusinessDay(nationalHolidayOfHoliday) {
 		t.Errorf(ErrFmt, "nationalHolidayOfHoliday")
 		t.Log("nationalHolidayOfHoliday: ", nationalHolidayOfHoliday.String())
 	}
-	if !IsWeekDay(weekday) {
+	if !IsBusinessDay(weekday) {
 		t.Errorf(ErrFmt, "weekday")
 		t.Log("weekday: ", weekday.String())
 	}
-	if IsWeekDay(holiday) {
+	if IsBusinessDay(holiday) {
 		t.Errorf(ErrFmt, "holiday")
 		t.Log("holiday: ", holiday.String())
 	}
@@ -85,7 +85,7 @@ func BenchmarkIsWeekDay(b *testing.B) {
 	b.ResetTimer()
 
 	for i := 0; i < b.N; i++ {
-		IsWeekDay(date[i])
+		IsBusinessDay(date[i])
 	}
 }
 

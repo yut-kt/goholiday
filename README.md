@@ -1,10 +1,11 @@
 # goholiday
 
+[![v0.1.0](https://img.shields.io/github/package-json/v/badges/shields.svg)]()
 [![GoDoc](https://godoc.org/github.com/yut-kt/goholiday?status.svg)](https://godoc.org/github.com/yut-kt/goholiday)
 
 ## Install
 ```bash
-$ go get github.com/yut-kt/holiday-jp
+$ go get github.com/yut-kt/goholiday
 ```
 
 ## Usage

@@ -49,4 +49,11 @@ IsBusinessDay is a function to decide whether t given business day
 ```go
 func IsWeekDay(t time.Time) bool
 ```
+<<<<<<< HEAD
 IsNationalHoliday is a function to decide whether t given national holiday
+=======
+
+## License
+MIT
+
+>>>>>>> [update]readme

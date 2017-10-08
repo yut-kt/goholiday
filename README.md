@@ -1,5 +1,4 @@
-# holiday-jp
---
+# goholiday
 
 ## Install
 ```bash

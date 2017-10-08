@@ -30,3 +30,7 @@ func IsNationalHoliday(t time.Time) bool
 ```go
 func IsWeekDay(t time.Time) bool
 ```
+
+## License
+MIT
+

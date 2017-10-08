@@ -1,5 +1,7 @@
 # goholiday
 
+[![GoDoc](https://godoc.org/github.com/yut-kt/goholiday?status.svg)](https://godoc.org/github.com/yut-kt/goholiday)
+
 ## Install
 ```bash
 $ go get github.com/yut-kt/holiday-jp

@@ -1,6 +1,6 @@
 # goholiday
 
-[![v0.1.0](https://img.shields.io/github/package-json/v/badges/shields.svg)]()
+[![v0.1.0](https://img.shields.io/badge/package-v0.1.0-ff69b4.svg)]()
 [![GoDoc](https://godoc.org/github.com/yut-kt/goholiday?status.svg)](https://godoc.org/github.com/yut-kt/goholiday)
 
 ## Install

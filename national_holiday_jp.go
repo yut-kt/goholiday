@@ -5,10 +5,17 @@ package goholiday
 import (
 	"sort"
 	"time"
+<<<<<<< HEAD
 	"gopkg.in/yaml.v2"
 	"github.com/yut-kt/goholiday/config"
 	"github.com/yut-kt/goholiday/entity"
 	"github.com/yut-kt/goholiday/data"
+=======
+	"github.com/goholiday/entity"
+	"io/ioutil"
+	"gopkg.in/yaml.v2"
+	"github.com/goholiday/config"
+>>>>>>> [add]godoc
 )
 
 // IsNationalHoliday is a function to decide whether t given national holiday.
@@ -30,12 +37,20 @@ func IsBusinessDay(t time.Time) bool {
 
 // BusinessDaysBefore is a function that calculates bds business days before given t
 func BusinessDaysBefore(t time.Time, bds int) time.Time {
+<<<<<<< HEAD
 	return travelBusinessDays(t.In(config.JST), bds, false)
+=======
+	return travelBusinessDays(t, bds, false)
+>>>>>>> [add]godoc
 }
 
 // BusinessDaysAfter is a function that calculates bds business days after given t
 func BusinessDaysAfter(t time.Time, bds int) time.Time {
+<<<<<<< HEAD
 	return travelBusinessDays(t.In(config.JST), bds, true)
+=======
+	return travelBusinessDays(t, bds, true)
+>>>>>>> [add]godoc
 }
 
 func travelBusinessDays(t time.Time, bds int, isFuture bool) time.Time {
@@ -44,9 +59,15 @@ func travelBusinessDays(t time.Time, bds int, isFuture bool) time.Time {
 		panic(err)
 	}
 
+<<<<<<< HEAD
 	course := map[bool]int{true: 1, false: -1}[isFuture]
 	for tbds := 0; tbds != bds; {
 		if t = t.AddDate(0, 0, course); isBusinessDay(t, nhs) {
+=======
+	for tbds := 0; tbds != businessDays; {
+		date = date.AddDate(0, 0, course)
+		if IsBusinessDay(date) {
+>>>>>>> [add]godoc
 			tbds++
 		}
 	}

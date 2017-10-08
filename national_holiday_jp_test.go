@@ -3,8 +3,12 @@ package goholiday
 import (
 	"testing"
 	"time"
+<<<<<<< HEAD
 	"github.com/yut-kt/goholiday/config"
 	"github.com/yut-kt/goholiday/data"
+=======
+	"github.com/goholiday/config"
+>>>>>>> [add]godoc
 )
 
 const (

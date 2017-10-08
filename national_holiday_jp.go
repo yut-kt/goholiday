@@ -1,4 +1,4 @@
-package holidayJp
+package goholiday
 
 import (
 	"github.com/holiday-jp/config"
@@ -34,7 +34,8 @@ func BusinessDaysAfter(t time.Time, businessDays int) time.Time {
 func travelBusinessDays(date time.Time, businessDays int, isTravelFuture bool) time.Time {
 	course := map[bool]int{true: 1, false: -1}[isTravelFuture]
 
-	for tbds := 0; tbds != businessDays; date = date.AddDate(0, 0, course) {
+	for tbds := 0; tbds != businessDays; {
+		date = date.AddDate(0, 0, course)
 		if IsWeekDay(date) {
 			tbds++
 		}

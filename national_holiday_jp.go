@@ -81,6 +81,7 @@ func travelBusinessDays(t time.Time, bds int, isFuture bool) time.Time {
 	return t
 }
 
+<<<<<<< HEAD
 func isNationalHoliday(t time.Time, nhs entity.NationalHolidays) bool {
 	index := sort.Search(len(nhs), func(i int) bool { return nhs[i].IsOrAfter(t) })
 	return nhs[index].Date == t.Format(config.DateFormat)
@@ -89,6 +90,14 @@ func isNationalHoliday(t time.Time, nhs entity.NationalHolidays) bool {
 func isBusinessDay(t time.Time, hs entity.NationalHolidays) bool {
 	return t.Weekday() != time.Saturday && t.Weekday() != time.Sunday && !isNationalHoliday(t, hs)
 }
+=======
+func fetchNationalHolidays() (entity.NationalHolidays, error) {
+	goholidayRoot := os.Getenv("GOPATH") + "/src/github.com/yut-kt/goholiday"
+	buf, err := ioutil.ReadFile(goholidayRoot + "/data/national_holidays_jp.yaml")
+	if err != nil {
+		return nil, err
+	}
+>>>>>>> [fix]open path
 
 func fetchNationalHolidays() (entity.NationalHolidays, error) {
 	var nh entity.NationalHolidays

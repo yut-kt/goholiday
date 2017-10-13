@@ -50,7 +50,8 @@ func travelBusinessDays(date time.Time, businessDays int, isTravelFuture bool) t
 }
 
 func fetchNationalHolidays() (entity.NationalHolidays, error) {
-	buf, err := ioutil.ReadFile("data/national_holidays.yaml")
+	goholidayRoot := os.Getenv("GOPATH") + "/src/github.com/yut-kt/goholiday"
+	buf, err := ioutil.ReadFile(goholidayRoot + "/data/national_holidays_jp.yaml")
 	if err != nil {
 		return nil, err
 	}

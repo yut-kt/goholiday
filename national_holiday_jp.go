@@ -5,6 +5,7 @@ package goholiday
 import (
 	"sort"
 	"time"
+	"os"
 	"io/ioutil"
 	"gopkg.in/yaml.v2"
 	"github.com/yut-kt/goholiday/config"

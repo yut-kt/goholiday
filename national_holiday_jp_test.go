@@ -3,7 +3,7 @@ package goholiday
 import (
 	"testing"
 	"time"
-	"github.com/goholiday/config"
+	"github.com/yut-kt/goholiday/config"
 )
 
 const (

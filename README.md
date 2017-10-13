@@ -20,6 +20,8 @@ Now we are dealing with only Japanese holidays but we plan to deal with other na
 [![GoDoc](https://godoc.org/github.com/yut-kt/goholiday?status.svg)](https://godoc.org/github.com/yut-kt/goholiday)
 >>>>>>> [add]godoc
 
+**Functions to calculate and judge about business days in Japan.**
+
 ## Install
 ```bash
 $ go get github.com/yut-kt/goholiday
@@ -33,6 +35,13 @@ import (
 )
 =======
 >>>>>>> [update]readme
+```
+
+## Import
+```go
+import (
+  "github.com/yut-kt/goholiday"
+)
 ```
 
 ## Usage
@@ -65,8 +74,12 @@ IsBusinessDay is a function to decide whether t given business day
 func IsWeekDay(t time.Time) bool
 ```
 <<<<<<< HEAD
+<<<<<<< HEAD
 IsNationalHoliday is a function to decide whether t given national holiday
 =======
+=======
+IsNationalHoliday is a function to decide whether t given national holiday
+>>>>>>> [update]Add explanation to readme
 
 ## License
 MIT

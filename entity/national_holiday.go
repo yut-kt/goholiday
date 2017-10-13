@@ -2,7 +2,7 @@ package entity
 
 import (
 	"time"
-	"github.com/goholiday/config"
+	"github.com/yut-kt/goholiday/config"
 )
 
 type NationalHoliday struct {

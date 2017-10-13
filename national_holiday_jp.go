@@ -5,10 +5,10 @@ package goholiday
 import (
 	"sort"
 	"time"
-	"github.com/goholiday/entity"
 	"io/ioutil"
 	"gopkg.in/yaml.v2"
-	"github.com/goholiday/config"
+	"github.com/yut-kt/goholiday/config"
+	"github.com/yut-kt/goholiday/entity"
 )
 
 // IsNationalHoliday is a function to decide whether t given national holiday.

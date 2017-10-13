@@ -7,6 +7,7 @@ import (
 	"time"
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	"gopkg.in/yaml.v2"
 	"github.com/yut-kt/goholiday/config"
 	"github.com/yut-kt/goholiday/entity"
@@ -18,6 +19,9 @@ import (
 	"github.com/goholiday/config"
 >>>>>>> [add]godoc
 =======
+=======
+	"os"
+>>>>>>> [fix]import os
 	"io/ioutil"
 	"gopkg.in/yaml.v2"
 	"github.com/yut-kt/goholiday/config"

@@ -3,10 +3,14 @@ package entity
 import (
 	"time"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	"github.com/yut-kt/goholiday/config"
 =======
 	"github.com/goholiday/config"
 >>>>>>> [add]godoc
+=======
+	"github.com/yut-kt/goholiday/config"
+>>>>>>> [fix]dir path
 )
 
 type NationalHoliday struct {

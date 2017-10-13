@@ -4,11 +4,15 @@ import (
 	"testing"
 	"time"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	"github.com/yut-kt/goholiday/config"
 	"github.com/yut-kt/goholiday/data"
 =======
 	"github.com/goholiday/config"
 >>>>>>> [add]godoc
+=======
+	"github.com/yut-kt/goholiday/config"
+>>>>>>> [fix]dir path
 )
 
 const (

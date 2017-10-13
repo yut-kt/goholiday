@@ -6,6 +6,7 @@ import (
 	"sort"
 	"time"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	"gopkg.in/yaml.v2"
 	"github.com/yut-kt/goholiday/config"
 	"github.com/yut-kt/goholiday/entity"
@@ -16,6 +17,12 @@ import (
 	"gopkg.in/yaml.v2"
 	"github.com/goholiday/config"
 >>>>>>> [add]godoc
+=======
+	"io/ioutil"
+	"gopkg.in/yaml.v2"
+	"github.com/yut-kt/goholiday/config"
+	"github.com/yut-kt/goholiday/entity"
+>>>>>>> [fix]dir path
 )
 
 // IsNationalHoliday is a function to decide whether t given national holiday.

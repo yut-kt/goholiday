@@ -2,6 +2,7 @@
 
 [![v0.1.0](https://img.shields.io/badge/package-v0.1.0-ff69b4.svg)]()
 [![GoDoc](https://godoc.org/github.com/yut-kt/goholiday?status.svg)](https://godoc.org/github.com/yut-kt/goholiday)
+[![license](http://img.shields.io/badge/license-MIT-red.svg?style=flat)](https://raw.githubusercontent.com/yut-kt/goholiday/v0.1.0/LICENSE)
 
 **Functions to calculate and judge about business days in Japan.**
 
@@ -47,7 +48,3 @@ IsBusinessDay is a function to decide whether t given business day
 func IsWeekDay(t time.Time) bool
 ```
 IsNationalHoliday is a function to decide whether t given national holiday
-
-## License
-MIT
-

@@ -13,6 +13,7 @@
 [![GoDoc](https://godoc.org/github.com/yut-kt/goholiday?status.svg)](https://godoc.org/github.com/yut-kt/goholiday)
 [![license](http://img.shields.io/badge/license-MIT-red.svg?style=flat)](https://raw.githubusercontent.com/yut-kt/goholiday/v0.1.0/LICENSE)
 <<<<<<< HEAD
+<<<<<<< HEAD
 [![coverage](https://img.shields.io/badge/coverage-100%25-green.svg)](https://github.com/yut-kt/goholiday/coverage/v0.1.2)
 
 **Functions to calculate and judge about business days in Japan.**
@@ -22,6 +23,9 @@ Now we are dealing with only Japanese holidays but we plan to deal with other na
 >>>>>>> [add]godoc
 =======
 >>>>>>> [update]MIT License
+=======
+[![Go Report Card](https://goreportcard.com/badge/github.com/hybridgroup/gobot)](https://goreportcard.com/report/github.com/hybridgroup/gobot)
+>>>>>>> [add]go report to readme
 
 **Functions to calculate and judge about business days in Japan.**
 

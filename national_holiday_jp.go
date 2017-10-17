@@ -115,6 +115,7 @@ func travelBusinessDays(t time.Time, bds int, isFuture bool) time.Time {
 	course := map[bool]int{true: 1, false: -1}[isFuture]
 	for tbds := 0; tbds != bds; {
 		if t = t.AddDate(0, 0, course); isBusinessDay(t, nhs) {
+<<<<<<< HEAD
 =======
 	for tbds := 0; tbds != businessDays; {
 		date = date.AddDate(0, 0, course)
@@ -131,6 +132,8 @@ func travelBusinessDays(t time.Time, bds int, isFuture bool) time.Time {
 	for tbds := 0; tbds != bds; {
 		t = t.AddDate(0, 0, course)
 		if isBusinessDay(t, nhs) {
+=======
+>>>>>>> [update]coverage 100
 			tbds++
 		}
 	}
@@ -166,11 +169,14 @@ func fetchNationalHolidays() (entity.NationalHolidays, error) {
 func fetchNationalHolidays() (entity.NationalHolidays, error) {
 	var nh entity.NationalHolidays
 	if err := yaml.Unmarshal(data.NationalHolidaysJpYaml, &nh); err != nil {
+<<<<<<< HEAD
 =======
 	var nh entity.NationalHolidays
 	err := yaml.Unmarshal(data.NationalHolidaysJpYaml, &nh)
 	if err != nil {
 >>>>>>> [update]Support for binaryization
+=======
+>>>>>>> [update]coverage 100
 		return nil, err
 	}
 	return nh, nil

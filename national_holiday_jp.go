@@ -36,7 +36,10 @@ func IsNationalHoliday(t time.Time) bool {
 		panic(err)
 	}
 
+<<<<<<< HEAD
 	t = t.In(config.JST)
+=======
+>>>>>>> [update]Reduced count of file reads
 	index := sort.Search(len(nhs), func(i int) bool { return nhs[i].IsOrAfter(t) })
 	return nhs[index].Date == t.Format(config.DateFormat)
 }
@@ -64,12 +67,27 @@ func BusinessDaysAfter(t time.Time, bds int) time.Time {
 >>>>>>> [add]godoc
 }
 
+<<<<<<< HEAD
 func travelBusinessDays(t time.Time, bds int, isFuture bool) time.Time {
+=======
+func isNationalHoliday(t time.Time, nhs entity.NationalHolidays) bool {
+	index := sort.Search(len(nhs), func(i int) bool { return nhs[i].IsOrAfter(t)})
+	return nhs[index].Date == t.Format(config.DateFormat)
+}
+
+func isBusinessDay(t time.Time, hs entity.NationalHolidays) bool {
+	return t.Weekday() != time.Saturday && t.Weekday() != time.Sunday && !isNationalHoliday(t, hs)
+}
+
+func travelBusinessDays(d time.Time, bds int, isFuture bool) time.Time {
+	course := map[bool]int{true: 1, false: -1}[isFuture]
+>>>>>>> [update]Reduced count of file reads
 	nhs, err := fetchNationalHolidays()
 	if err != nil {
 		panic(err)
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	course := map[bool]int{true: 1, false: -1}[isFuture]
 	for tbds := 0; tbds != bds; {
@@ -83,6 +101,15 @@ func travelBusinessDays(t time.Time, bds int, isFuture bool) time.Time {
 		}
 	}
 	return t
+=======
+	for tbds := 0; tbds != bds; {
+		d = d.AddDate(0, 0, course)
+		if isBusinessDay(d, nhs) {
+			tbds++
+		}
+	}
+	return d
+>>>>>>> [update]Reduced count of file reads
 }
 
 <<<<<<< HEAD

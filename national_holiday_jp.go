@@ -8,6 +8,7 @@ import (
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	"gopkg.in/yaml.v2"
 	"github.com/yut-kt/goholiday/config"
 	"github.com/yut-kt/goholiday/entity"
@@ -27,6 +28,12 @@ import (
 	"github.com/yut-kt/goholiday/config"
 	"github.com/yut-kt/goholiday/entity"
 >>>>>>> [fix]dir path
+=======
+	"gopkg.in/yaml.v2"
+	"github.com/yut-kt/goholiday/config"
+	"github.com/yut-kt/goholiday/entity"
+	"github.com/yut-kt/goholiday/data"
+>>>>>>> [update]Support for binaryization
 )
 
 // IsNationalHoliday is a function to decide whether t given national holiday.
@@ -71,7 +78,7 @@ func BusinessDaysAfter(t time.Time, bds int) time.Time {
 func travelBusinessDays(t time.Time, bds int, isFuture bool) time.Time {
 =======
 func isNationalHoliday(t time.Time, nhs entity.NationalHolidays) bool {
-	index := sort.Search(len(nhs), func(i int) bool { return nhs[i].IsOrAfter(t)})
+	index := sort.Search(len(nhs), func(i int) bool { return nhs[i].IsOrAfter(t) })
 	return nhs[index].Date == t.Format(config.DateFormat)
 }
 
@@ -123,6 +130,7 @@ func isBusinessDay(t time.Time, hs entity.NationalHolidays) bool {
 }
 =======
 func fetchNationalHolidays() (entity.NationalHolidays, error) {
+<<<<<<< HEAD
 	goholidayRoot := os.Getenv("GOPATH") + "/src/github.com/yut-kt/goholiday"
 	buf, err := ioutil.ReadFile(goholidayRoot + "/data/national_holidays_jp.yaml")
 	if err != nil {
@@ -133,6 +141,11 @@ func fetchNationalHolidays() (entity.NationalHolidays, error) {
 func fetchNationalHolidays() (entity.NationalHolidays, error) {
 	var nh entity.NationalHolidays
 	if err := yaml.Unmarshal(data.NationalHolidaysJpYaml, &nh); err != nil {
+=======
+	var nh entity.NationalHolidays
+	err := yaml.Unmarshal(data.NationalHolidaysJpYaml, &nh)
+	if err != nil {
+>>>>>>> [update]Support for binaryization
 		return nil, err
 	}
 	return nh, nil

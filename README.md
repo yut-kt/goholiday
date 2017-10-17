@@ -31,6 +31,7 @@ Now we are dealing with only Japanese holidays but we plan to deal with other na
 >>>>>>> [fix]delete goreport from readme
 
 **Functions to calculate and judge about business days in Japan.**
+Now we are dealing with only Japanese holidays but we plan to deal with other national holidays.
 
 ## Install
 ```bash

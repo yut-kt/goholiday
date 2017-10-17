@@ -44,9 +44,13 @@ func IsNationalHoliday(t time.Time) bool {
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	t = t.In(config.JST)
 =======
 >>>>>>> [update]Reduced count of file reads
+=======
+	t = t.In(config.JST)
+>>>>>>> [update]Fixed Zone JST
 	index := sort.Search(len(nhs), func(i int) bool { return nhs[i].IsOrAfter(t) })
 	return nhs[index].Date == t.Format(config.DateFormat)
 }
@@ -59,14 +63,19 @@ func IsBusinessDay(t time.Time) bool {
 // BusinessDaysBefore is a function that calculates bds business days before given t
 func BusinessDaysBefore(t time.Time, bds int) time.Time {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return travelBusinessDays(t.In(config.JST), bds, false)
 =======
 	return travelBusinessDays(t, bds, false)
 >>>>>>> [add]godoc
+=======
+	return travelBusinessDays(t.In(config.JST), bds, false)
+>>>>>>> [update]Fixed Zone JST
 }
 
 // BusinessDaysAfter is a function that calculates bds business days after given t
 func BusinessDaysAfter(t time.Time, bds int) time.Time {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	return travelBusinessDays(t.In(config.JST), bds, true)
 =======
@@ -89,11 +98,18 @@ func isBusinessDay(t time.Time, hs entity.NationalHolidays) bool {
 func travelBusinessDays(d time.Time, bds int, isFuture bool) time.Time {
 	course := map[bool]int{true: 1, false: -1}[isFuture]
 >>>>>>> [update]Reduced count of file reads
+=======
+	return travelBusinessDays(t.In(config.JST), bds, true)
+}
+
+func travelBusinessDays(t time.Time, bds int, isFuture bool) time.Time {
+>>>>>>> [update]Fixed Zone JST
 	nhs, err := fetchNationalHolidays()
 	if err != nil {
 		panic(err)
 	}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 	course := map[bool]int{true: 1, false: -1}[isFuture]
@@ -109,17 +125,26 @@ func travelBusinessDays(d time.Time, bds int, isFuture bool) time.Time {
 	}
 	return t
 =======
+=======
+	course := map[bool]int{true: 1, false: -1}[isFuture]
+>>>>>>> [update]Fixed Zone JST
 	for tbds := 0; tbds != bds; {
-		d = d.AddDate(0, 0, course)
-		if isBusinessDay(d, nhs) {
+		t = t.AddDate(0, 0, course)
+		if isBusinessDay(t, nhs) {
 			tbds++
 		}
 	}
+<<<<<<< HEAD
 	return d
 >>>>>>> [update]Reduced count of file reads
 }
 
 <<<<<<< HEAD
+=======
+	return t
+}
+
+>>>>>>> [update]Fixed Zone JST
 func isNationalHoliday(t time.Time, nhs entity.NationalHolidays) bool {
 	index := sort.Search(len(nhs), func(i int) bool { return nhs[i].IsOrAfter(t) })
 	return nhs[index].Date == t.Format(config.DateFormat)

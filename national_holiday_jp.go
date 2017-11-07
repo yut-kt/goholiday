@@ -8,7 +8,7 @@ import (
 	"gopkg.in/yaml.v2"
 	"github.com/yut-kt/goholiday/config"
 	"github.com/yut-kt/goholiday/entity"
-	"github.com/yut-kt/goholiday/data"
+	"github.com/yut-kt/goholiday/nholidays"
 )
 
 // IsNationalHoliday is a function to decide whether t given national holiday.
@@ -64,7 +64,7 @@ func isBusinessDay(t time.Time, hs entity.NationalHolidays) bool {
 
 func fetchNationalHolidays() (entity.NationalHolidays, error) {
 	var nh entity.NationalHolidays
-	if err := yaml.Unmarshal(data.NationalHolidaysJpYaml, &nh); err != nil {
+	if err := yaml.Unmarshal(nholidays.JpYaml, &nh); err != nil {
 		return nil, err
 	}
 	return nh, nil

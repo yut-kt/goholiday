@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 	"github.com/yut-kt/goholiday/config"
-	"github.com/yut-kt/goholiday/data"
+	"github.com/yut-kt/goholiday/nholidays"
 )
 
 const (
@@ -185,7 +185,7 @@ func BenchmarkBusinessDaysAfter(b *testing.B) {
 }
 
 func TestIsNationalHoliday2s(t *testing.T) {
-	data.NationalHolidaysJpYaml = []byte(`fail`)
+	nholidays.JpYaml = []byte(`fail`)
 	defer func() {
 		err := recover()
 		if err == nil {
@@ -196,7 +196,7 @@ func TestIsNationalHoliday2s(t *testing.T) {
 }
 
 func TestBusinessDaysAfter2(t *testing.T) {
-	data.NationalHolidaysJpYaml = []byte(`fail`)
+	nholidays.JpYaml = []byte(`fail`)
 	defer func() {
 		err := recover()
 		if err == nil {

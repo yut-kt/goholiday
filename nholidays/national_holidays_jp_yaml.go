@@ -1,6 +1,6 @@
-package data
+package nholidays
 
-var NationalHolidaysJpYaml = []byte(`
+var JpYaml = []byte(`
 -
  date: 1970-01-01
  name: 元日

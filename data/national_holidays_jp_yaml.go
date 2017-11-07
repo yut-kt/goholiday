@@ -1,3 +1,6 @@
+package data
+
+var NationalHolidaysJpYaml = []byte(`
 -
  date: 1970-01-01
  name: 元日
@@ -3970,3 +3973,4 @@
 -
  date: 2050-11-23
  name: 勤労感謝の日
+`)

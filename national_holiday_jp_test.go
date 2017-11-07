@@ -4,6 +4,7 @@ import (
 	"testing"
 	"time"
 	"github.com/yut-kt/goholiday/config"
+	"github.com/yut-kt/goholiday/data"
 )
 
 const (
@@ -181,4 +182,26 @@ func BenchmarkBusinessDaysAfter(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		BusinessDaysAfter(date[i], i)
 	}
+}
+
+func TestIsNationalHoliday2s(t *testing.T) {
+	data.NationalHolidaysJpYaml = []byte(`fail`)
+	defer func() {
+		err := recover()
+		if err == nil {
+			t.Errorf(ErrFmt, "panic")
+		}
+	}()
+	IsNationalHoliday(time.Now())
+}
+
+func TestBusinessDaysAfter2(t *testing.T) {
+	data.NationalHolidaysJpYaml = []byte(`fail`)
+	defer func() {
+		err := recover()
+		if err == nil {
+			t.Errorf(ErrFmt, "panic")
+		}
+	}()
+	BusinessDaysAfter(time.Now(), 1)
 }

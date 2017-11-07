@@ -1,0 +1,25 @@
+goos: darwin
+goarch: amd64
+pkg: github.com/goholiday
+BenchmarkIsNationalHoliday-4    	     300	   5762713 ns/op	 1354213 B/op	   34483 allocs/op
+BenchmarkIsNationalHoliday-4    	     300	   5713307 ns/op	 1354214 B/op	   34483 allocs/op
+BenchmarkIsNationalHoliday-4    	     300	   5688819 ns/op	 1354212 B/op	   34483 allocs/op
+BenchmarkIsNationalHoliday-4    	     300	   5742520 ns/op	 1354225 B/op	   34483 allocs/op
+BenchmarkIsNationalHoliday-4    	     300	   5742892 ns/op	 1354213 B/op	   34483 allocs/op
+BenchmarkIsBusinessDay-4            	     300	   4158872 ns/op	  970520 B/op	   24713 allocs/op
+BenchmarkIsBusinessDay-4            	     300	   4119797 ns/op	  970518 B/op	   24713 allocs/op
+BenchmarkIsBusinessDay-4            	     300	   4232157 ns/op	  970517 B/op	   24713 allocs/op
+BenchmarkIsBusinessDay-4            	     300	   4106535 ns/op	  970518 B/op	   24713 allocs/op
+BenchmarkIsBusinessDay-4            	     300	   4103657 ns/op	  970518 B/op	   24713 allocs/op
+BenchmarkBusinessDaysBefore-4   	     100	 300694429 ns/op	71150309 B/op	 1811766 allocs/op
+BenchmarkBusinessDaysBefore-4   	     100	 300216555 ns/op	71150324 B/op	 1811766 allocs/op
+BenchmarkBusinessDaysBefore-4   	     100	 299202627 ns/op	71150308 B/op	 1811766 allocs/op
+BenchmarkBusinessDaysBefore-4   	     100	 300844803 ns/op	71150331 B/op	 1811766 allocs/op
+BenchmarkBusinessDaysBefore-4   	     100	 303150212 ns/op	71150356 B/op	 1811766 allocs/op
+BenchmarkBusinessDaysAfter-4    	     100	 303849383 ns/op	71421180 B/op	 1818663 allocs/op
+BenchmarkBusinessDaysAfter-4    	     100	 304001624 ns/op	71421162 B/op	 1818663 allocs/op
+BenchmarkBusinessDaysAfter-4    	     100	 313753963 ns/op	71421190 B/op	 1818663 allocs/op
+BenchmarkBusinessDaysAfter-4    	     100	 308541403 ns/op	71421189 B/op	 1818663 allocs/op
+BenchmarkBusinessDaysAfter-4    	     100	 307811632 ns/op	71421186 B/op	 1818663 allocs/op
+PASS
+ok  	github.com/goholiday	324.866s

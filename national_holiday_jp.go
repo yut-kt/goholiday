@@ -11,11 +11,19 @@ import (
 	"github.com/yut-kt/goholiday/nholidays"
 )
 
+const DFmt = config.DateFormat
+
 var nhs entity.NationalHolidays
 func init() {
 	if err := yaml.Unmarshal(nholidays.JpYaml, &nhs); err != nil {
 		panic(err)
 	}
+}
+
+var uhs []time.Time
+func setUniqueHolidays(ts []time.Time) {
+	sort.Slice(ts, func(i, j int) bool { return ts[i].Before(ts[j]) })
+	uhs = ts
 }
 
 // IsNationalHoliday is a function to decide whether t given national holiday.
@@ -25,7 +33,7 @@ func IsNationalHoliday(t time.Time) bool {
 	if index == len(nhs) {
 		return false
 	}
-	return nhs[index].Date == t.Format(config.DateFormat)
+	return nhs[index].Date == t.Format(DFmt)
 }
 
 // IsBusinessDay is a function to decide whether t given business day.
@@ -47,9 +55,17 @@ func travelBusinessDays(t time.Time, bds int, isFuture bool) time.Time {
 	t = t.In(config.JST)
 	course := map[bool]int{true: 1, false: -1}[isFuture]
 	for tbds := 0; tbds != bds; {
-		if t = t.AddDate(0, 0, course); IsBusinessDay(t) {
+		if t = t.AddDate(0, 0, course); IsBusinessDay(t) && isNotUniqueHoliday(t) {
 			tbds++
 		}
 	}
 	return t
+}
+
+func isNotUniqueHoliday(t time.Time) bool {
+	index := sort.Search(len(uhs), func(i int) bool { return uhs[i].After(t) || uhs[i].Format(DFmt) == t.Format(DFmt) })
+	if index == len(uhs) {
+		return true
+	}
+	return uhs[index].Format(DFmt) != t.Format(DFmt)
 }

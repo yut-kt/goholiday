@@ -3,19 +3,8 @@ package goholiday
 import (
 	"testing"
 	"time"
-<<<<<<< HEAD
-<<<<<<< HEAD
 	"github.com/yut-kt/goholiday/config"
 	"github.com/yut-kt/goholiday/data"
-<<<<<<< HEAD
-=======
-	"github.com/goholiday/config"
->>>>>>> [add]godoc
-=======
-	"github.com/yut-kt/goholiday/config"
->>>>>>> [fix]dir path
-=======
->>>>>>> [update]coverage 100
 )
 
 const (
@@ -215,8 +204,4 @@ func TestBusinessDaysAfter2(t *testing.T) {
 		}
 	}()
 	BusinessDaysAfter(time.Now(), 1)
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> [update]coverage 100

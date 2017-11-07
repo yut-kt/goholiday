@@ -14,13 +14,13 @@ import (
 
 // IsNationalHoliday is a function to decide whether t given national holiday.
 func IsNationalHoliday(t time.Time) bool {
-	nationalHolidays, err := fetchNationalHolidays()
+	nhs, err := fetchNationalHolidays()
 	if err != nil {
 		panic(err)
 	}
 
-	index := sort.Search(len(nationalHolidays), func(i int) bool { return nationalHolidays[i].IsOrAfter(t) })
-	return nationalHolidays[index].Date == t.Format(config.DateFormat)
+	index := sort.Search(len(nhs), func(i int) bool { return nhs[i].IsOrAfter(t) })
+	return nhs[index].Date == t.Format(config.DateFormat)
 }
 
 // IsBusinessDay is a function to decide whether t given business day.
@@ -38,16 +38,29 @@ func BusinessDaysAfter(t time.Time, bds int) time.Time {
 	return travelBusinessDays(t, bds, true)
 }
 
-func travelBusinessDays(date time.Time, businessDays int, isTravelFuture bool) time.Time {
-	course := map[bool]int{true: 1, false: -1}[isTravelFuture]
+func isNationalHoliday(t time.Time, nhs entity.NationalHolidays) bool {
+	index := sort.Search(len(nhs), func(i int) bool { return nhs[i].IsOrAfter(t)})
+	return nhs[index].Date == t.Format(config.DateFormat)
+}
 
-	for tbds := 0; tbds != businessDays; {
-		date = date.AddDate(0, 0, course)
-		if IsBusinessDay(date) {
+func isBusinessDay(t time.Time, hs entity.NationalHolidays) bool {
+	return t.Weekday() != time.Saturday && t.Weekday() != time.Sunday && !isNationalHoliday(t, hs)
+}
+
+func travelBusinessDays(d time.Time, bds int, isFuture bool) time.Time {
+	course := map[bool]int{true: 1, false: -1}[isFuture]
+	nhs, err := fetchNationalHolidays()
+	if err != nil {
+		panic(err)
+	}
+
+	for tbds := 0; tbds != bds; {
+		d = d.AddDate(0, 0, course)
+		if isBusinessDay(d, nhs) {
 			tbds++
 		}
 	}
-	return date
+	return d
 }
 
 func fetchNationalHolidays() (entity.NationalHolidays, error) {

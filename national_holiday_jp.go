@@ -3,24 +3,25 @@
 package goholiday
 
 import (
-	"sort"
-	"time"
-	"gopkg.in/yaml.v2"
 	"github.com/yut-kt/goholiday/config"
 	"github.com/yut-kt/goholiday/entity"
 	"github.com/yut-kt/goholiday/nholidays"
+	"gopkg.in/yaml.v2"
+	"sort"
+	"time"
 )
 
 const DFmt = config.DateFormat
 
 var nhs entity.NationalHolidays
+var uhs []time.Time
+
 func init() {
 	if err := yaml.Unmarshal(nholidays.JpYaml, &nhs); err != nil {
 		panic(err)
 	}
 }
 
-var uhs []time.Time
 func setUniqueHolidays(ts []time.Time) {
 	sort.Slice(ts, func(i, j int) bool { return ts[i].Before(ts[j]) })
 	uhs = ts

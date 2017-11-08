@@ -33,21 +33,21 @@ func setUniqueHolidays(ts []time.Time) {
 // IsNationalHoliday is a function to decide whether t given national holiday.
 func IsNationalHoliday(t time.Time) bool {
 	t = t.In(JST)
-	index := sort.Search(len(nhs), func(i int) bool { return nhs[i].IsOrAfter(t) })
-	if index == len(nhs) {
-		return false
-	}
-	return nhs[index].Date == t.Format(DFmt)
+	return existNationalHoliday(t)
 }
 
 // IsBusinessDay is a function to decide whether t given business day.
 func IsBusinessDay(t time.Time) bool {
 	t = t.In(JST)
+	return t.Weekday() != time.Saturday && t.Weekday() != time.Sunday && !existNationalHoliday(t)
+}
+
+func existNationalHoliday(t time.Time) bool {
 	index := sort.Search(len(nhs), func(i int) bool { return nhs[i].IsOrAfter(t) })
 	if index == len(nhs) {
 		return false
 	}
-	return t.Weekday() != time.Saturday && t.Weekday() != time.Sunday && nhs[index].Date != t.Format(DFmt)
+	return nhs[index].Date == t.Format(DFmt)
 }
 
 // BusinessDaysBefore is a function that calculates bds business days before given t

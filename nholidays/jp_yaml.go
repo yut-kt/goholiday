@@ -1,5 +1,6 @@
 package nholidays
 
+// JpYaml is Japan National Holidays yaml
 var JpYaml = []byte(`
 1990-01-01: 元日
 1990-01-15: 成人の日

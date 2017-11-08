@@ -39,7 +39,7 @@ func TestIsNationalHoliday(t *testing.T) {
 func BenchmarkIsNationalHoliday(b *testing.B) {
 	date := make([]time.Time, b.N)
 	for n := 0; n < b.N; n++ {
-		date[n] = time.Now().AddDate(0,0, n)
+		date[n] = time.Now().AddDate(0, 0, n)
 	}
 	b.ResetTimer()
 
@@ -197,7 +197,7 @@ func TestBusinessDaysBeforeUnique(t *testing.T) {
 		t.Error("Can`t parse date")
 	}
 	uhs := []time.Time{udate1, udate2, udate3}
-	setUniqueHolidays(uhs)
+	SetUniqueHolidays(uhs)
 
 	if BusinessDaysBefore(date1, 1).Format(DFmt) != "2017-10-04" {
 		t.Errorf(ErrFmt, "date1-2")
@@ -241,7 +241,7 @@ func TestBusinessDaysAfterUnique(t *testing.T) {
 		t.Error("Can`t parse date")
 	}
 	uhs := []time.Time{udate1, udate2, udate3}
-	setUniqueHolidays(uhs)
+	SetUniqueHolidays(uhs)
 
 	if BusinessDaysAfter(date1, 1).Format(DFmt) != "2017-10-06" {
 		t.Errorf(ErrFmt, "date1-1")

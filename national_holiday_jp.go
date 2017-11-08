@@ -4,7 +4,6 @@ package goholiday
 
 import (
 	"github.com/yut-kt/goholiday/config"
-	"github.com/yut-kt/goholiday/entity"
 	"github.com/yut-kt/goholiday/nholidays"
 	"gopkg.in/yaml.v2"
 	"sort"
@@ -14,7 +13,7 @@ import (
 const DFmt = config.DateFormat
 
 var (
-	nhs entity.NationalHolidays
+	nhs = make(map[string]string)
 	uhs []time.Time
 	JST = config.JST
 )
@@ -25,7 +24,8 @@ func init() {
 	}
 }
 
-func setUniqueHolidays(ts []time.Time) {
+// SetUniqueHolidays is a function to set unique holidays.
+func SetUniqueHolidays(ts []time.Time) {
 	sort.Slice(ts, func(i, j int) bool { return ts[i].Before(ts[j]) })
 	uhs = ts
 }
@@ -43,11 +43,10 @@ func IsBusinessDay(t time.Time) bool {
 }
 
 func existNationalHoliday(t time.Time) bool {
-	index := sort.Search(len(nhs), func(i int) bool { return nhs[i].IsOrAfter(t) })
-	if index == len(nhs) {
-		return false
+	if _, exist := nhs[t.Format(DFmt)]; exist {
+		return true
 	}
-	return nhs[index].Date == t.Format(DFmt)
+	return false
 }
 
 // BusinessDaysBefore is a function that calculates bds business days before given t

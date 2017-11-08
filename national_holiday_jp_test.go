@@ -3,20 +3,17 @@ package goholiday
 import (
 	"testing"
 	"time"
-	"github.com/yut-kt/goholiday/config"
-	"github.com/yut-kt/goholiday/data"
 )
 
 const (
-	Fmt    = config.DateFormat
 	ErrFmt = "Checking %s is incorrect."
 )
 
 func TestIsNationalHoliday(t *testing.T) {
-	nationalHolidayOfWeekday, err1 := time.Parse(Fmt, "2017-10-09")
-	nationalHolidayOfHoliday, err2 := time.Parse(Fmt, "2017-09-23")
-	weekday, err3 := time.Parse(Fmt, "2017-10-10")
-	holiday, err4 := time.Parse(Fmt, "2017-09-24")
+	nationalHolidayOfWeekday, err1 := time.Parse(DFmt, "2017-10-09")
+	nationalHolidayOfHoliday, err2 := time.Parse(DFmt, "2017-09-23")
+	weekday, err3 := time.Parse(DFmt, "2017-10-10")
+	holiday, err4 := time.Parse(DFmt, "2017-09-24")
 	if err1 != nil || err2 != nil || err3 != nil || err4 != nil {
 		t.Error("Can`t parse date.")
 	}
@@ -40,9 +37,9 @@ func TestIsNationalHoliday(t *testing.T) {
 }
 
 func BenchmarkIsNationalHoliday(b *testing.B) {
-	var date []time.Time
+	date := make([]time.Time, b.N)
 	for n := 0; n < b.N; n++ {
-		date = append(date, time.Now().AddDate(0, 0, n))
+		date[n] = time.Now().AddDate(0, 0, n)
 	}
 	b.ResetTimer()
 
@@ -52,10 +49,10 @@ func BenchmarkIsNationalHoliday(b *testing.B) {
 }
 
 func TestIsBusinessDay(t *testing.T) {
-	nationalHolidayOfWeekday, err1 := time.Parse(Fmt, "2017-10-09")
-	nationalHolidayOfHoliday, err2 := time.Parse(Fmt, "2017-09-23")
-	weekday, err3 := time.Parse(Fmt, "2017-10-10")
-	holiday, err4 := time.Parse(Fmt, "2017-09-24")
+	nationalHolidayOfWeekday, err1 := time.Parse(DFmt, "2017-10-09")
+	nationalHolidayOfHoliday, err2 := time.Parse(DFmt, "2017-09-23")
+	weekday, err3 := time.Parse(DFmt, "2017-10-10")
+	holiday, err4 := time.Parse(DFmt, "2017-09-24")
 	if err1 != nil || err2 != nil || err3 != nil || err4 != nil {
 		t.Error("Can`t parse date.")
 	}
@@ -79,9 +76,9 @@ func TestIsBusinessDay(t *testing.T) {
 }
 
 func BenchmarkIsWeekDay(b *testing.B) {
-	var date []time.Time
+	date := make([]time.Time, b.N)
 	for n := 0; n < b.N; n++ {
-		date = append(date, time.Now().AddDate(0, 0, n))
+		date[n] = time.Now().AddDate(0, 0, n)
 	}
 	b.ResetTimer()
 
@@ -91,44 +88,44 @@ func BenchmarkIsWeekDay(b *testing.B) {
 }
 
 func TestBusinessDaysBefore(t *testing.T) {
-	date1, err1 := time.Parse(Fmt, "2017-10-11")
-	date2, err2 := time.Parse(Fmt, "2017-10-10")
-	date3, err3 := time.Parse(Fmt, "2017-10-09")
-	date4, err4 := time.Parse(Fmt, "2017-10-08")
+	date1, err1 := time.Parse(DFmt, "2017-10-11")
+	date2, err2 := time.Parse(DFmt, "2017-10-10")
+	date3, err3 := time.Parse(DFmt, "2017-10-09")
+	date4, err4 := time.Parse(DFmt, "2017-10-08")
 	if err1 != nil || err2 != nil || err3 != nil || err4 != nil {
 		t.Error("Can`t parse date.")
 	}
 
-	if BusinessDaysBefore(date1, 1).Format(Fmt) != "2017-10-10" {
+	if BusinessDaysBefore(date1, 1).Format(DFmt) != "2017-10-10" {
 		t.Errorf(ErrFmt, "date1-2")
-		t.Log("date1-1: ", BusinessDaysBefore(date1, 1).Format(Fmt))
+		t.Log("date1-1: ", BusinessDaysBefore(date1, 1).Format(DFmt))
 	}
-	if BusinessDaysBefore(date1, 2).Format(Fmt) != "2017-10-06" {
+	if BusinessDaysBefore(date1, 2).Format(DFmt) != "2017-10-06" {
 		t.Errorf(ErrFmt, "date1-2")
-		t.Log("date1-2: ", BusinessDaysBefore(date1, 2).Format(Fmt))
+		t.Log("date1-2: ", BusinessDaysBefore(date1, 2).Format(DFmt))
 	}
-	if BusinessDaysBefore(date2, 1).Format(Fmt) != "2017-10-06" {
+	if BusinessDaysBefore(date2, 1).Format(DFmt) != "2017-10-06" {
 		t.Errorf(ErrFmt, "date2-1")
-		t.Log("date2-1: ", BusinessDaysBefore(date2, 1).Format(Fmt))
+		t.Log("date2-1: ", BusinessDaysBefore(date2, 1).Format(DFmt))
 	}
-	if BusinessDaysBefore(date2, 2).Format(Fmt) != "2017-10-05" {
+	if BusinessDaysBefore(date2, 2).Format(DFmt) != "2017-10-05" {
 		t.Errorf(ErrFmt, "date2-2")
-		t.Log("date2-2: ", BusinessDaysBefore(date2, 2).Format(Fmt))
+		t.Log("date2-2: ", BusinessDaysBefore(date2, 2).Format(DFmt))
 	}
-	if BusinessDaysBefore(date3, 1).Format(Fmt) != "2017-10-06" {
+	if BusinessDaysBefore(date3, 1).Format(DFmt) != "2017-10-06" {
 		t.Errorf(ErrFmt, "date3")
-		t.Log("date3: ", BusinessDaysBefore(date3, 1).Format(Fmt))
+		t.Log("date3: ", BusinessDaysBefore(date3, 1).Format(DFmt))
 	}
-	if BusinessDaysBefore(date4, 1).Format(Fmt) != "2017-10-06" {
+	if BusinessDaysBefore(date4, 1).Format(DFmt) != "2017-10-06" {
 		t.Errorf(ErrFmt, "date4")
-		t.Log("date4: ", BusinessDaysBefore(date4, 1).Format(Fmt))
+		t.Log("date4: ", BusinessDaysBefore(date4, 1).Format(DFmt))
 	}
 }
 
 func BenchmarkBusinessDaysBefore(b *testing.B) {
-	var date []time.Time
+	date := make([]time.Time, b.N)
 	for n := 0; n < b.N; n++ {
-		date = append(date, time.Now().AddDate(0, 0, n))
+		date[n] = time.Now().AddDate(0, 0, n)
 	}
 	b.ResetTimer()
 
@@ -138,44 +135,44 @@ func BenchmarkBusinessDaysBefore(b *testing.B) {
 }
 
 func TestBusinessDaysAfter(t *testing.T) {
-	date1, err1 := time.Parse(Fmt, "2017-10-05")
-	date2, err2 := time.Parse(Fmt, "2017-10-06")
-	date3, err3 := time.Parse(Fmt, "2017-10-07")
-	date4, err4 := time.Parse(Fmt, "2017-10-09")
+	date1, err1 := time.Parse(DFmt, "2017-10-05")
+	date2, err2 := time.Parse(DFmt, "2017-10-06")
+	date3, err3 := time.Parse(DFmt, "2017-10-07")
+	date4, err4 := time.Parse(DFmt, "2017-10-09")
 	if err1 != nil || err2 != nil || err3 != nil || err4 != nil {
 		t.Error("Can`t parse date.")
 	}
 
-	if BusinessDaysAfter(date1, 1).Format(Fmt) != "2017-10-06" {
+	if BusinessDaysAfter(date1, 1).Format(DFmt) != "2017-10-06" {
 		t.Errorf(ErrFmt, "date1-1")
-		t.Log("date1-1: ", BusinessDaysAfter(date1, 1).Format(Fmt))
+		t.Log("date1-1: ", BusinessDaysAfter(date1, 1).Format(DFmt))
 	}
-	if BusinessDaysAfter(date1, 2).Format(Fmt) != "2017-10-10" {
+	if BusinessDaysAfter(date1, 2).Format(DFmt) != "2017-10-10" {
 		t.Errorf(ErrFmt, "date1-2")
-		t.Log("date1-2: ", BusinessDaysAfter(date1, 2).Format(Fmt))
+		t.Log("date1-2: ", BusinessDaysAfter(date1, 2).Format(DFmt))
 	}
-	if BusinessDaysAfter(date2, 1).Format(Fmt) != "2017-10-10" {
+	if BusinessDaysAfter(date2, 1).Format(DFmt) != "2017-10-10" {
 		t.Errorf(ErrFmt, "date2-1")
-		t.Log("date2-1: ", BusinessDaysAfter(date2, 1).Format(Fmt))
+		t.Log("date2-1: ", BusinessDaysAfter(date2, 1).Format(DFmt))
 	}
-	if BusinessDaysAfter(date2, 2).Format(Fmt) != "2017-10-11" {
+	if BusinessDaysAfter(date2, 2).Format(DFmt) != "2017-10-11" {
 		t.Errorf(ErrFmt, "date2-2")
-		t.Log("date2-2: ", BusinessDaysAfter(date2, 2).Format(Fmt))
+		t.Log("date2-2: ", BusinessDaysAfter(date2, 2).Format(DFmt))
 	}
-	if BusinessDaysAfter(date3, 1).Format(Fmt) != "2017-10-10" {
+	if BusinessDaysAfter(date3, 1).Format(DFmt) != "2017-10-10" {
 		t.Errorf(ErrFmt, "date3")
-		t.Log("date3: ", BusinessDaysAfter(date3, 1).Format(Fmt))
+		t.Log("date3: ", BusinessDaysAfter(date3, 1).Format(DFmt))
 	}
-	if BusinessDaysAfter(date4, 1).Format(Fmt) != "2017-10-10" {
+	if BusinessDaysAfter(date4, 1).Format(DFmt) != "2017-10-10" {
 		t.Errorf(ErrFmt, "date4")
-		t.Log("date4: ", BusinessDaysAfter(date4, 1).Format(Fmt))
+		t.Log("date4: ", BusinessDaysAfter(date4, 1).Format(DFmt))
 	}
 }
 
 func BenchmarkBusinessDaysAfter(b *testing.B) {
-	var date []time.Time
+	date := make([]time.Time, b.N)
 	for n := 0; n < b.N; n++ {
-		date = append(date, time.Now().AddDate(0, 0, n))
+		date[n] = time.Now().AddDate(0, 0, n)
 	}
 	b.ResetTimer()
 
@@ -184,24 +181,90 @@ func BenchmarkBusinessDaysAfter(b *testing.B) {
 	}
 }
 
-func TestIsNationalHoliday2s(t *testing.T) {
-	data.NationalHolidaysJpYaml = []byte(`fail`)
-	defer func() {
-		err := recover()
-		if err == nil {
-			t.Errorf(ErrFmt, "panic")
-		}
-	}()
-	IsNationalHoliday(time.Now())
+// set unique holidays
+func TestBusinessDaysBeforeUnique(t *testing.T) {
+	date1, err1 := time.Parse(DFmt, "2017-10-11")
+	date2, err2 := time.Parse(DFmt, "2017-10-10")
+	date3, err3 := time.Parse(DFmt, "2017-10-09")
+	date4, err4 := time.Parse(DFmt, "2017-10-08")
+	if err1 != nil || err2 != nil || err3 != nil || err4 != nil {
+		t.Error("Can`t parse date")
+	}
+	udate1, err1 := time.Parse(DFmt, "2017-10-10")
+	udate2, err2 := time.Parse(DFmt, "2017-10-05")
+	udate3, err3 := time.Parse(DFmt, "2017-10-06")
+	if err1 != nil || err2 != nil || err3 != nil {
+		t.Error("Can`t parse date")
+	}
+	uhs := []time.Time{udate1, udate2, udate3}
+	SetUniqueHolidays(uhs)
+
+	if BusinessDaysBefore(date1, 1).Format(DFmt) != "2017-10-04" {
+		t.Errorf(ErrFmt, "date1-2")
+		t.Log("date1-1: ", BusinessDaysBefore(date1, 1).Format(DFmt))
+	}
+	if BusinessDaysBefore(date1, 2).Format(DFmt) != "2017-10-03" {
+		t.Errorf(ErrFmt, "date1-2")
+		t.Log("date1-2: ", BusinessDaysBefore(date1, 2).Format(DFmt))
+	}
+	if BusinessDaysBefore(date2, 1).Format(DFmt) != "2017-10-04" {
+		t.Errorf(ErrFmt, "date2-1")
+		t.Log("date2-1: ", BusinessDaysBefore(date2, 1).Format(DFmt))
+	}
+	if BusinessDaysBefore(date2, 2).Format(DFmt) != "2017-10-03" {
+		t.Errorf(ErrFmt, "date2-2")
+		t.Log("date2-2: ", BusinessDaysBefore(date2, 2).Format(DFmt))
+	}
+	if BusinessDaysBefore(date3, 1).Format(DFmt) != "2017-10-04" {
+		t.Errorf(ErrFmt, "date3")
+		t.Log("date3: ", BusinessDaysBefore(date3, 1).Format(DFmt))
+	}
+	if BusinessDaysBefore(date4, 1).Format(DFmt) != "2017-10-04" {
+		t.Errorf(ErrFmt, "date4")
+		t.Log("date4: ", BusinessDaysBefore(date4, 1).Format(DFmt))
+	}
 }
 
-func TestBusinessDaysAfter2(t *testing.T) {
-	data.NationalHolidaysJpYaml = []byte(`fail`)
-	defer func() {
-		err := recover()
-		if err == nil {
-			t.Errorf(ErrFmt, "panic")
-		}
-	}()
-	BusinessDaysAfter(time.Now(), 1)
+// set unique holidays
+func TestBusinessDaysAfterUnique(t *testing.T) {
+	date1, err1 := time.Parse(DFmt, "2017-10-05")
+	date2, err2 := time.Parse(DFmt, "2017-10-06")
+	date3, err3 := time.Parse(DFmt, "2017-10-07")
+	date4, err4 := time.Parse(DFmt, "2017-10-09")
+	if err1 != nil || err2 != nil || err3 != nil || err4 != nil {
+		t.Error("Can`t parse date.")
+	}
+	udate1, err1 := time.Parse(DFmt, "2017-10-10")
+	udate2, err2 := time.Parse(DFmt, "2017-10-12")
+	udate3, err3 := time.Parse(DFmt, "2017-10-13")
+	if err1 != nil || err2 != nil || err3 != nil {
+		t.Error("Can`t parse date")
+	}
+	uhs := []time.Time{udate1, udate2, udate3}
+	SetUniqueHolidays(uhs)
+
+	if BusinessDaysAfter(date1, 1).Format(DFmt) != "2017-10-06" {
+		t.Errorf(ErrFmt, "date1-1")
+		t.Log("date1-1: ", BusinessDaysAfter(date1, 1).Format(DFmt))
+	}
+	if BusinessDaysAfter(date1, 2).Format(DFmt) != "2017-10-11" {
+		t.Errorf(ErrFmt, "date1-2")
+		t.Log("date1-2: ", BusinessDaysAfter(date1, 2).Format(DFmt))
+	}
+	if BusinessDaysAfter(date2, 1).Format(DFmt) != "2017-10-11" {
+		t.Errorf(ErrFmt, "date2-1")
+		t.Log("date2-1: ", BusinessDaysAfter(date2, 1).Format(DFmt))
+	}
+	if BusinessDaysAfter(date2, 2).Format(DFmt) != "2017-10-16" {
+		t.Errorf(ErrFmt, "date2-2")
+		t.Log("date2-2: ", BusinessDaysAfter(date2, 2).Format(DFmt))
+	}
+	if BusinessDaysAfter(date3, 1).Format(DFmt) != "2017-10-11" {
+		t.Errorf(ErrFmt, "date3")
+		t.Log("date3: ", BusinessDaysAfter(date3, 1).Format(DFmt))
+	}
+	if BusinessDaysAfter(date4, 1).Format(DFmt) != "2017-10-11" {
+		t.Errorf(ErrFmt, "date4")
+		t.Log("date4: ", BusinessDaysAfter(date4, 1).Format(DFmt))
+	}
 }

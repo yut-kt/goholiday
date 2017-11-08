@@ -12,11 +12,13 @@ type NationalHoliday struct {
 
 type NationalHolidays []*NationalHoliday
 
+var DFmt = config.DateFormat
+
 func (nh NationalHoliday) IsOrAfter(t time.Time) bool {
-	pt, err := time.Parse(config.DateFormat, nh.Date)
+	pt, err := time.Parse(DFmt, nh.Date)
 	if err != nil {
 		panic(err)
 	}
 
-	return nh.Date == t.Format(config.DateFormat) || pt.After(t)
+	return nh.Date == t.Format(DFmt) || pt.After(t)
 }

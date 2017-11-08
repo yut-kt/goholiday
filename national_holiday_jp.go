@@ -13,8 +13,11 @@ import (
 
 const DFmt = config.DateFormat
 
-var nhs entity.NationalHolidays
-var uhs []time.Time
+var (
+	nhs entity.NationalHolidays
+	uhs []time.Time
+	JST = config.JST
+)
 
 func init() {
 	if err := yaml.Unmarshal(nholidays.JpYaml, &nhs); err != nil {
@@ -29,7 +32,7 @@ func setUniqueHolidays(ts []time.Time) {
 
 // IsNationalHoliday is a function to decide whether t given national holiday.
 func IsNationalHoliday(t time.Time) bool {
-	t = t.In(config.JST)
+	t = t.In(JST)
 	index := sort.Search(len(nhs), func(i int) bool { return nhs[i].IsOrAfter(t) })
 	if index == len(nhs) {
 		return false
@@ -39,7 +42,12 @@ func IsNationalHoliday(t time.Time) bool {
 
 // IsBusinessDay is a function to decide whether t given business day.
 func IsBusinessDay(t time.Time) bool {
-	return t.Weekday() != time.Saturday && t.Weekday() != time.Sunday && !IsNationalHoliday(t)
+	t = t.In(JST)
+	index := sort.Search(len(nhs), func(i int) bool { return nhs[i].IsOrAfter(t) })
+	if index == len(nhs) {
+		return false
+	}
+	return t.Weekday() != time.Saturday && t.Weekday() != time.Sunday && nhs[index].Date != t.Format(DFmt)
 }
 
 // BusinessDaysBefore is a function that calculates bds business days before given t
@@ -53,7 +61,7 @@ func BusinessDaysAfter(t time.Time, bds int) time.Time {
 }
 
 func travelBusinessDays(t time.Time, bds int, isFuture bool) time.Time {
-	t = t.In(config.JST)
+	t = t.In(JST)
 	course := map[bool]int{true: 1, false: -1}[isFuture]
 	for tbds := 0; tbds != bds; {
 		if t = t.AddDate(0, 0, course); IsBusinessDay(t) && isNotUniqueHoliday(t) {

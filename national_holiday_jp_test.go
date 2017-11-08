@@ -37,9 +37,9 @@ func TestIsNationalHoliday(t *testing.T) {
 }
 
 func BenchmarkIsNationalHoliday(b *testing.B) {
-	var date []time.Time
+	date := make([]time.Time, b.N)
 	for n := 0; n < b.N; n++ {
-		date = append(date, time.Now().AddDate(0, 0, n))
+		date[n] = time.Now().AddDate(0,0, n)
 	}
 	b.ResetTimer()
 
@@ -76,9 +76,9 @@ func TestIsBusinessDay(t *testing.T) {
 }
 
 func BenchmarkIsWeekDay(b *testing.B) {
-	var date []time.Time
+	date := make([]time.Time, b.N)
 	for n := 0; n < b.N; n++ {
-		date = append(date, time.Now().AddDate(0, 0, n))
+		date[n] = time.Now().AddDate(0, 0, n)
 	}
 	b.ResetTimer()
 
@@ -123,9 +123,9 @@ func TestBusinessDaysBefore(t *testing.T) {
 }
 
 func BenchmarkBusinessDaysBefore(b *testing.B) {
-	var date []time.Time
+	date := make([]time.Time, b.N)
 	for n := 0; n < b.N; n++ {
-		date = append(date, time.Now().AddDate(0, 0, n))
+		date[n] = time.Now().AddDate(0, 0, n)
 	}
 	b.ResetTimer()
 
@@ -170,9 +170,9 @@ func TestBusinessDaysAfter(t *testing.T) {
 }
 
 func BenchmarkBusinessDaysAfter(b *testing.B) {
-	var date []time.Time
+	date := make([]time.Time, b.N)
 	for n := 0; n < b.N; n++ {
-		date = append(date, time.Now().AddDate(0, 0, n))
+		date[n] = time.Now().AddDate(0, 0, n)
 	}
 	b.ResetTimer()
 
@@ -182,7 +182,7 @@ func BenchmarkBusinessDaysAfter(b *testing.B) {
 }
 
 // set unique holidays
-func TestBusinessDaysBefore2(t *testing.T) {
+func TestBusinessDaysBeforeUnique(t *testing.T) {
 	date1, err1 := time.Parse(DFmt, "2017-10-11")
 	date2, err2 := time.Parse(DFmt, "2017-10-10")
 	date3, err3 := time.Parse(DFmt, "2017-10-09")

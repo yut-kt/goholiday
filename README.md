@@ -56,3 +56,13 @@ IsBusinessDay is a function to decide whether t given business day
 func IsWeekDay(t time.Time) bool
 ```
 IsNationalHoliday is a function to decide whether t given national holiday
+
+## Contribution
+
+1. Fork ([https://github.com/yut-kt/goholiday/fork](https://github.com/yut-kt/goholiday/fork))
+2. Checkout the latest version of branch
+3. Create a feature branch
+4. Commit your changes
+5. Run test suite with the `go test ./...` command and confirm that it passes
+6. Run `gofmt -s` or `goimports -s`
+7. Create new Pull Request

@@ -5,7 +5,6 @@ package goholiday
 import (
 	"github.com/yut-kt/goholiday/config"
 	"github.com/yut-kt/goholiday/nholidays"
-	"gopkg.in/yaml.v2"
 	"sort"
 	"time"
 )
@@ -13,16 +12,9 @@ import (
 const dFmt = config.DateFormat
 
 var (
-	nhs = make(map[string]string)
 	uhs []time.Time
 	jst = config.JST
 )
-
-func init() {
-	if err := yaml.Unmarshal(nholidays.JpYaml, &nhs); err != nil {
-		panic(err)
-	}
-}
 
 // SetUniqueHolidays is a function to set unique holidays.
 func SetUniqueHolidays(ts []time.Time) {
@@ -43,7 +35,7 @@ func IsBusinessDay(t time.Time) bool {
 }
 
 func existNationalHoliday(t time.Time) bool {
-	if _, exist := nhs[t.Format(dFmt)]; exist {
+	if _, exist := nholidays.Jp[t.Format(dFmt)]; exist {
 		return true
 	}
 	return false

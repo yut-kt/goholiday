@@ -28,13 +28,19 @@ func SetUniqueHolidays(ts []time.Time) void
 ```
 SetUniqueHolidays is a function to set unique holidays
 
-#### func  BusinessDaysAfter
+#### func  IsNationalHoliday
 
 ```go
-func BusinessDaysAfter(t time.Time, businessDays int) time.Time
+func IsNationalHoliday(t time.Time) bool
 ```
-BusinessDaysAfter is a function that calculates bds business days after given t
+IsNationalHoliday is a function to decide whether t given national holiday
 
+#### func  IsWeekDay
+
+```go
+func IsBusinessday(t time.Time) bool
+```
+IsBusinessday is a function to decide whether t given businessday
 
 #### func  BusinessDaysBefore
 
@@ -43,19 +49,13 @@ func BusinessDaysBefore(t time.Time, businessDays int) time.Time
 ```
 BusinessDaysBefore is a function that calculates bds business days before given t
 
-#### func  IsNationalHoliday
+#### func  BusinessDaysAfter
 
 ```go
-func IsNationalHoliday(t time.Time) bool
+func BusinessDaysAfter(t time.Time, businessDays int) time.Time
 ```
-IsBusinessDay is a function to decide whether t given business day
+BusinessDaysAfter is a function that calculates bds business days after given t
 
-#### func  IsWeekDay
-
-```go
-func IsWeekDay(t time.Time) bool
-```
-IsNationalHoliday is a function to decide whether t given national holiday
 
 ## Contribution
 

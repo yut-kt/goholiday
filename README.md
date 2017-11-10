@@ -67,3 +67,7 @@ BusinessDaysAfter is a function that calculates bds business days after given t
 5. Run test suite with the `go test ./...` command and confirm that it passes
 6. Run `gofmt -s` or `goimports -s`
 7. Create new Pull Request
+
+## License
+
+goholiday is released under the [MIT License](https://raw.githubusercontent.com/yut-kt/goholiday/master/LICENSE).

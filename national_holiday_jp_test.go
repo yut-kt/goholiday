@@ -266,7 +266,7 @@ func BenchmarkBusinessDaysAfter(b *testing.B) {
 
 // set unique holidays
 func TestIsHolidayUnique(t *testing.T) {
-	SetUniqueHolidays([]time.Time{time.Date(2017, 10, 10, 0, 0, 0, 0, time.Local),})
+	SetUniqueHolidays([]time.Time{time.Date(2017, 10, 10, 0, 0, 0, 0, time.Local)})
 
 	date := time.Date(2017, 10, 10, 0, 0, 0, 0, time.Local)
 	expect := true
@@ -277,7 +277,7 @@ func TestIsHolidayUnique(t *testing.T) {
 
 // set unique holidays
 func TestIsBusinessDayUnique(t *testing.T) {
-	SetUniqueHolidays([]time.Time{time.Date(2017, 10, 10, 0, 0, 0, 0, time.Local),})
+	SetUniqueHolidays([]time.Time{time.Date(2017, 10, 10, 0, 0, 0, 0, time.Local)})
 
 	date := time.Date(2017, 10, 10, 0, 0, 0, 0, time.Local)
 	expect := false

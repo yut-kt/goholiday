@@ -1,4 +1,4 @@
-// Package goholiday provides Package ome simple calcuration functions.
+// Package goholiday provides Package ome simple calculation functions.
 // These are functions to calculate business days.
 package goholiday
 
@@ -25,20 +25,18 @@ func SetUniqueHolidays(ts []time.Time) {
 // IsNationalHoliday is a function to decide whether t given national holiday.
 func IsNationalHoliday(t time.Time) bool {
 	t = t.In(jst)
-	return existNationalHoliday(t)
+	return existNationalHoliday(t) || isUniqueHoliday(t)
 }
 
 // IsBusinessDay is a function to decide whether t given business day.
 func IsBusinessDay(t time.Time) bool {
 	t = t.In(jst)
-	return t.Weekday() != time.Saturday && t.Weekday() != time.Sunday && !existNationalHoliday(t)
+	return t.Weekday() != time.Saturday && t.Weekday() != time.Sunday && !existNationalHoliday(t) && !isUniqueHoliday(t)
 }
 
 func existNationalHoliday(t time.Time) bool {
-	if _, exist := nholidays.Jp[t.Format(dFmt)]; exist {
-		return true
-	}
-	return false
+	_, exist := nholidays.Jp[t.Format(dFmt)]
+	return exist
 }
 
 // BusinessDaysBefore is a function that calculates bds business days before given t
@@ -55,17 +53,17 @@ func travelBusinessDays(t time.Time, bds int, isFuture bool) time.Time {
 	t = t.In(jst)
 	course := map[bool]int{true: 1, false: -1}[isFuture]
 	for tbds := 0; tbds != bds; {
-		if t = t.AddDate(0, 0, course); IsBusinessDay(t) && isNotUniqueHoliday(t) {
+		if t = t.AddDate(0, 0, course); IsBusinessDay(t) && !isUniqueHoliday(t) {
 			tbds++
 		}
 	}
 	return t
 }
 
-func isNotUniqueHoliday(t time.Time) bool {
+func isUniqueHoliday(t time.Time) bool {
 	index := sort.Search(len(uhs), func(i int) bool { return uhs[i].After(t) || uhs[i].Format(dFmt) == t.Format(dFmt) })
 	if index == len(uhs) {
-		return true
+		return false
 	}
-	return uhs[index].Format(dFmt) != t.Format(dFmt)
+	return uhs[index].Format(dFmt) == t.Format(dFmt)
 }

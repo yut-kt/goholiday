@@ -1,9 +1,9 @@
 # goholiday
 
-[![v0.1.5](https://img.shields.io/badge/package-v0.1.5-ff69b4.svg)]()
+[![v0.1.6](https://img.shields.io/badge/package-v0.1.6-ff69b4.svg)]()
 [![GoDoc](https://godoc.org/github.com/yut-kt/goholiday?status.svg)](https://godoc.org/github.com/yut-kt/goholiday)
 [![license](http://img.shields.io/badge/license-MIT-red.svg?style=flat)](https://raw.githubusercontent.com/yut-kt/goholiday/master/LICENSE)
-[![coverage](https://img.shields.io/badge/coverage-100%25-green.svg)](https://github.com/yut-kt/goholiday/coverage/v0.1.5)
+[![coverage](https://img.shields.io/badge/coverage-100%25-green.svg)](https://github.com/yut-kt/goholiday/coverage/v0.1.6)
 [![Go Report Card](https://goreportcard.com/badge/github.com/yut-kt/goholiday)](https://goreportcard.com/report/github.com/yut-kt/goholiday)
 
 **Functions to calculate and judge about business days in Japan.**
@@ -23,35 +23,37 @@ import (
 
 ## Usage
 
+#### func  IsNationalHoliday
+```go
+func IsNationalHoliday(t time.Time) bool
+```
+IsNationalHoliday is a function to decide whether t given national holiday
+
 ### func SetUniqueHolidays
 ```go
 func SetUniqueHolidays(ts []time.Time) void
 ```
 SetUniqueHolidays is a function to set unique holidays
 
-#### func  IsNationalHoliday
-
+#### func IsHoliday
 ```go
-func IsNationalHoliday(t time.Time) bool
+func IsHoliday(t time.Time) bool
 ```
-IsNationalHoliday is a function to decide whether t given national holiday
+IsHoliday is a function to decide whether t given holiday
 
 #### func  IsBusinessDay
-
 ```go
 func IsBusinessDay(t time.Time) bool
 ```
 IsBusinessDay is a function to decide whether t given business day
 
 #### func  BusinessDaysBefore
-
 ```go
 func BusinessDaysBefore(t time.Time, businessDays int) time.Time
 ```
 BusinessDaysBefore is a function that calculates bds business days before given t
 
 #### func  BusinessDaysAfter
-
 ```go
 func BusinessDaysAfter(t time.Time, businessDays int) time.Time
 ```

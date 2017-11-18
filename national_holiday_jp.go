@@ -25,16 +25,22 @@ func SetUniqueHolidays(ts []time.Time) {
 // IsNationalHoliday is a function to decide whether t given national holiday.
 func IsNationalHoliday(t time.Time) bool {
 	t = t.In(jst)
-	return existNationalHoliday(t) || isUniqueHoliday(t)
+	return searchNHoliday(t)
+}
+
+// IsHoliday is a function to decide whether t given holiday.
+func IsHoliday(t time.Time) bool {
+	t = t.In(jst)
+	return t.Weekday() == time.Saturday || t.Weekday() == time.Sunday || searchNHoliday(t) || isUniqueHoliday(t)
 }
 
 // IsBusinessDay is a function to decide whether t given business day.
 func IsBusinessDay(t time.Time) bool {
 	t = t.In(jst)
-	return t.Weekday() != time.Saturday && t.Weekday() != time.Sunday && !existNationalHoliday(t) && !isUniqueHoliday(t)
+	return !IsHoliday(t)
 }
 
-func existNationalHoliday(t time.Time) bool {
+func searchNHoliday(t time.Time) bool {
 	_, exist := nholidays.Jp[t.Format(dFmt)]
 	return exist
 }

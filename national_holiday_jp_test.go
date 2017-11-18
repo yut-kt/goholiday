@@ -48,6 +48,33 @@ func BenchmarkIsNationalHoliday(b *testing.B) {
 	}
 }
 
+func TestIsHoliday(t *testing.T) {
+	nationalHolidayOfWeekday, err1 := time.Parse(dFmt, "2017-10-09")
+	nationalHolidayOfHoliday, err2 := time.Parse(dFmt, "2017-09-23")
+	weekday, err3 := time.Parse(dFmt, "2017-10-10")
+	holiday, err4 := time.Parse(dFmt, "2017-09-24")
+	if err1 != nil || err2 != nil || err3 != nil || err4 != nil {
+		t.Error("Can`t parse date.")
+	}
+
+	if !IsHoliday(nationalHolidayOfWeekday) {
+		t.Errorf(errFmt, "nationalHolidayOfWeekday")
+		t.Log("nationalHolidayOfWeekday: ", nationalHolidayOfWeekday.String())
+	}
+	if !IsHoliday(nationalHolidayOfHoliday) {
+		t.Errorf(errFmt, "nationalHolidayOfHoliday")
+		t.Log("nationalHolidayOfHoliday: ", nationalHolidayOfHoliday.String())
+	}
+	if IsHoliday(weekday) {
+		t.Errorf(errFmt, "weekday")
+		t.Log("weekday: ", weekday.String())
+	}
+	if !IsHoliday(holiday) {
+		t.Errorf(errFmt, "holiday")
+		t.Log("holiday: ", holiday.String())
+	}
+}
+
 func TestIsBusinessDay(t *testing.T) {
 	nationalHolidayOfWeekday, err1 := time.Parse(dFmt, "2017-10-09")
 	nationalHolidayOfHoliday, err2 := time.Parse(dFmt, "2017-09-23")

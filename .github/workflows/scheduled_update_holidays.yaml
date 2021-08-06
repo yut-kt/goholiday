@@ -1,4 +1,4 @@
-name: Update Holidays
+name: Scheduled Update Holidays
 
 on:
   schedule:
@@ -11,23 +11,21 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        with:
-          ref: auto/holiday_updated
 
-      - name: Download holiday files
-        run: bash script/holiday_downloader.sh
+      - name: Library Install
+        run: sudo apt-get install nkf
 
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
           go-version: 1.16
 
-      - name: Generate holiday defilned
-        run: go run gen/jp_generator.go
+      - name: Update Holiday
+        run: make updateHolidays
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
           commit-message: update holidays
           title: Update Holiday
-          branch: master
+          base: master

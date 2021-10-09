@@ -3,10 +3,11 @@
 package goholiday
 
 import (
-	"github.com/yut-kt/goholiday/config"
-	"github.com/yut-kt/goholiday/nholidays"
 	"sort"
 	"time"
+
+	"github.com/yut-kt/goholiday/config"
+	"github.com/yut-kt/goholiday/nholidays"
 )
 
 const dFmt = config.DateFormat

@@ -1,4 +1,4 @@
-name: DefaultBranchTest
+name: Test
 
 on:
   push:

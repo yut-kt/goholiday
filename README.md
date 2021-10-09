@@ -2,10 +2,9 @@
 
 [![v0.1.7](https://img.shields.io/github/v/release/yut-kt/goholiday?logoColor=ff69b4&style=social)]()
 [![coverage](https://img.shields.io/badge/coverage-100%25-green.svg)](https://github.com/yut-kt/goholiday/coverage/v0.1.6)
-[![Go Report Card](https://goreportcard.com/badge/github.com/yut-kt/goholiday)](https://goreportcard.com/report/github.com/yut-kt/goholiday)
-
+[![Go Report Card](https://goreportcard.com/badge/github.com/yut-kt/goholiday)](https://goreportcard.com/report/github.com/yut-kt/goholiday)  
 [![GoDoc](https://godoc.org/github.com/yut-kt/goholiday?status.svg)](https://godoc.org/github.com/yut-kt/goholiday)
-[![license](http://img.shields.io/badge/license-MIT-red.svg?style=flat)](https://raw.githubusercontent.com/yut-kt/goholiday/master/LICENSE)
+[![license](http://img.shields.io/badge/license-MIT-red.svg?style=flat)](LICENSE)
 
 **Functions to calculate and judge about business days in Japan.**
 Now we are dealing with only Japanese holidays but we plan to deal with other national holidays.
@@ -61,14 +60,7 @@ func BusinessDaysAfter(t time.Time, businessDays int) time.Time
 BusinessDaysAfter is a function that calculates bds business days after given t
 
 ## Contribution
-
-1. Fork ([https://github.com/yut-kt/goholiday/fork](https://github.com/yut-kt/goholiday/fork))
-2. Checkout the latest version of branch
-3. Create a feature branch
-4. Commit your changes
-5. Run test suite with the `go test ./...` command and confirm that it passes
-6. Run `gofmt -s` or `goimports -s`
-7. Create new Pull Request
+[CONTRIBUTING.md](docs/CONTRIBUTING.md)
 
 ## License
-goholiday is released under the [MIT License](https://raw.githubusercontent.com/yut-kt/goholiday/master/LICENSE).
+goholiday is released under the [MIT License](LICENSE).

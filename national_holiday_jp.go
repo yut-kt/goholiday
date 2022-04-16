@@ -5,11 +5,10 @@ package goholiday
 import (
 	"time"
 
-	"github.com/yut-kt/goholiday/config"
 	"github.com/yut-kt/goholiday/nholidays/jp"
 )
 
-const dFmt = config.DateFormat
+const dFmt = "2006-01-02"
 
 var jpHoliday = Goholiday{jp.New(), map[string]struct{}{}}
 

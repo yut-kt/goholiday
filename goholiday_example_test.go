@@ -1,10 +1,11 @@
 package goholiday_test
 
 import (
+	"fmt"
 	"time"
+
 	"github.com/yut-kt/goholiday"
 	"github.com/yut-kt/goholiday/nholidays/jp"
-	"fmt"
 )
 
 func getLocaleJP() *time.Location {
@@ -182,7 +183,7 @@ func ExampleGoholiday_BusinessDaysAfter() {
 			expect: time.Date(2017, 10, 10, 0, 0, 0, 0, localeJP),
 		},
 	}
-	
+
 	gh := goholiday.New(jp.New())
 	for _, c := range cases {
 		fmt.Println(gh.BusinessDaysAfter(c.date, c.days).Format("2006-01-02") == c.expect.Format("2006-01-02"))

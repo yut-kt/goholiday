@@ -28,7 +28,11 @@ func main() {
 	}
 	r := csv.NewReader(f)
 
-	var h []*Holiday
+	var (
+		h      []*Holiday
+		isSkip bool
+	)
+
 	for i := 0; ; i++ {
 		record, err := r.Read()
 		if err == io.EOF {
@@ -49,10 +53,18 @@ func main() {
 				if err != nil {
 					panic(err)
 				}
-				holiday.Date = t.Format("2006-01-02")
+				tmp := t.Format("2006-01-02")
+				if tmp >= "2000-01-01" {
+					holiday.Date = t.Format("2006-01-02")
+					isSkip = false
+				} else {
+					isSkip = true
+				}
 			case 1:
-				holiday.Name = v
-				h = append(h, &holiday)
+				if !isSkip {
+					holiday.Name = v
+					h = append(h, &holiday)
+				}
 			}
 		}
 	}

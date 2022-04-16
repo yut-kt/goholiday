@@ -5,8 +5,8 @@ declare -A urls=(
 )
 
 for key in "${!urls[@]}"; do
-  original_path="nholidays/${key}/national_holidays.csv"
-  download_path="nholidays/${key}/tmp.csv"
+  original_path="nholidays/${key}.csv"
+  download_path="nholidays/tmp_${key}.csv"
 
   wget -O "${download_path}" "${urls[${key}]}"
   nkf -w --overwrite "${download_path}"

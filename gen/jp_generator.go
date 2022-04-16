@@ -22,7 +22,7 @@ var filename = flag.String("output", "nholidays/jp_def.go", "output file name")
 
 //go:generate go run . -output nholidays/jp_def.go
 func main() {
-	f, err := os.Open("nholidays/jp.csv")
+	f, err := os.Open("nholidays/national_holidays.csv")
 	if err != nil {
 		panic(err)
 	}

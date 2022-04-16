@@ -5,9 +5,7 @@ import (
 	"time"
 )
 
-const (
-	errFmt = "Checking %v is incorrect."
-)
+const errFmt = "Checking %v is incorrect."
 
 func TestIsNationalHoliday(t *testing.T) {
 	cases := []struct {

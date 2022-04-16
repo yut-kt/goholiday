@@ -15,6 +15,13 @@ type Goholiday struct {
 	uniqueHolidays map[string]struct{}
 }
 
+func New(schedule Schedule) *Goholiday {
+	return &Goholiday{
+		schedule:       schedule,
+		uniqueHolidays: map[string]struct{}{},
+	}
+}
+
 func (g *Goholiday) IsNationalHoliday(t time.Time) bool {
 	t = t.In(g.schedule.GetLocation())
 	_, exist := g.schedule.GetNationalHolidays()[t.Format(dateFormat)]

@@ -1,6 +1,6 @@
 # goholiday
 
-[![v1.0.0](https://img.shields.io/github/v/release/yut-kt/goholiday?logoColor=ff69b4&style=social)]()
+[![v1.0.2](https://img.shields.io/github/v/release/yut-kt/goholiday?logoColor=ff69b4&style=social)]()
 [![Test](https://github.com/yut-kt/goholiday/actions/workflows/default_branch_test.yaml/badge.svg)](https://github.com/yut-kt/goholiday/actions/workflows/default_branch_test.yaml)
 [![coverage](https://img.shields.io/badge/coverage-100%25-green.svg)]()
 [![Go Report Card](https://goreportcard.com/badge/github.com/yut-kt/goholiday)](https://goreportcard.com/report/github.com/yut-kt/goholiday)  
@@ -24,13 +24,11 @@ import (
 
 ## Usage
 
-### version > v1
-look at [example](https://github.com/yut-kt/goholiday/blob/master/goholiday_example_test.go)
+- version >= v1.x.x
+  - look at [example](https://github.com/yut-kt/goholiday/blob/master/goholiday_example_test.go)
 
-### version < v1
-look at docs/v0.md
-
-
+- version = v0.x.x (deprecated)
+  - look at [docs/v0.md](docs/v0.md)
 
 ## Contribution
 [CONTRIBUTING.md](docs/CONTRIBUTING.md)

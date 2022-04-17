@@ -28,4 +28,4 @@ jobs:
         with:
           commit-message: update holidays
           title: Update Holiday
-          base: master
+          base: updated_holiday

@@ -7,12 +7,7 @@ import (
 )
 
 func NewEngland() *nholidays.ScheduleImpl {
-	loc, err := time.LoadLocation("Asia/Tokyo")
-	if err != nil {
-		panic(err)
-	}
 	return nholidays.New(
-		loc,
 		map[time.Weekday]struct{}{
 			time.Saturday: {},
 			time.Sunday:   {},

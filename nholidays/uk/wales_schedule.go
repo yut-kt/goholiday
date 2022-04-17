@@ -6,7 +6,7 @@ import (
 	"github.com/yut-kt/goholiday/nholidays"
 )
 
-func NewEngland() *nholidays.ScheduleImpl {
+func NewWales() *nholidays.ScheduleImpl {
 	return nholidays.New(
 		map[time.Weekday]struct{}{
 			time.Saturday: {},

@@ -15,13 +15,6 @@ Now we are dealing with only Japanese holidays but we plan to deal with other na
 $ go get github.com/yut-kt/goholiday
 ```
 
-## Import
-```go
-import (
-  "github.com/yut-kt/goholiday"
-)
-```
-
 ## Usage
 
 - version >= v1.x.x
@@ -29,6 +22,18 @@ import (
 
 - version = v0.x.x (deprecated)
   - look at [docs/v0.md](docs/v0.md)
+
+## Supported ccTLD
+```
+support 2022, 2023
+|- jp
+|- sg
+|- uk 
+    |- England
+    |- NorthernIreland
+    |- Scotland
+    |- Wales
+```
 
 ## Contribution
 [CONTRIBUTING.md](docs/CONTRIBUTING.md)

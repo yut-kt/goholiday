@@ -100,42 +100,28 @@ const prog = `
 
 package jp
 
-import "time"
+import (
+	"time"
 
-type ScheduleImpl struct {
-	nationalHolidays map[string]string
-	weekdayHolidays  map[time.Weekday]struct{}
-	location         *time.Location
-}
+	"github.com/yut-kt/goholiday/nholidays"
+)
 
-func New() *ScheduleImpl {
+func New() *nholidays.ScheduleImpl  {
 	loc, err := time.LoadLocation("Asia/Tokyo")
 	if err != nil {
 		panic(err)
 	}
-	return &ScheduleImpl{
-		nationalHolidays: map[string]string{
-			{{range .Holiday}}	"{{.Date}}": "{{.Name}}",
-			{{end}}
-		},
-		weekdayHolidays: map[time.Weekday]struct{}{
+	return nholidays.New(
+		loc,
+		map[time.Weekday]struct{}{
 			time.Saturday: {},
 			time.Sunday:   {},
 		},
-		location: loc,
-	}
-}
-
-func (s *ScheduleImpl) GetNationalHolidays() map[string]string {
-	return s.nationalHolidays
-}
-
-func (s *ScheduleImpl) GetWeekdayHolidays() map[time.Weekday]struct{} {
-	return s.weekdayHolidays
-}
-
-func (s *ScheduleImpl) GetLocation() *time.Location {
-	return s.location
+		map[string]string{
+			{{range .Holiday}}	"{{.Date}}": "{{.Name}}",
+			{{end}}
+		},
+	)
 }
 
 `

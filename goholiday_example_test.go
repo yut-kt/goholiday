@@ -4,6 +4,10 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/yut-kt/goholiday/nholidays"
+
+	"github.com/yut-kt/goholiday/nholidays/uk"
+
 	"github.com/yut-kt/goholiday"
 	"github.com/yut-kt/goholiday/nholidays/jp"
 )
@@ -14,6 +18,30 @@ func getLocaleJP() *time.Location {
 		panic(err)
 	}
 	return locale
+}
+
+func ExampleGoholiday() {
+	// Japan Schedule
+	ghj := goholiday.New(jp.New())
+	fmt.Println(ghj.IsNationalHoliday(time.Date(2022, 1, 1, 0, 0, 0, 0, time.Local)))
+
+	// England Schedule
+	ghe := goholiday.New(uk.NewEngland())
+	fmt.Println(ghe.IsNationalHoliday(time.Date(2022, 1, 1, 0, 0, 0, 0, time.Local)))
+
+	// Original Schedule
+	mySchedule := nholidays.New(
+		time.Local,
+		map[time.Weekday]struct{}{},
+		map[string]string{"2022-05-01": "my holiday"},
+	)
+	ghMine := goholiday.New(mySchedule)
+	fmt.Println(ghMine.IsNationalHoliday(time.Date(2022, 5, 1, 0, 0, 0, 0, time.Local)))
+
+	// Output:
+	// true
+	// true
+	// true
 }
 
 func ExampleNew() {

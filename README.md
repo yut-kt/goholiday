@@ -26,9 +26,10 @@ $ go get github.com/yut-kt/goholiday
 ## Supported ccTLD
 ```
 support 2022, 2023
-|- jp
-|- sg
-|- uk 
+|- gr (Greece)
+|- jp (Japan)
+|- sg (Singapore)
+|- uk (United Kingdom)
     |- England
     |- NorthernIreland
     |- Scotland

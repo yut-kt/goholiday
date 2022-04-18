@@ -12,14 +12,6 @@ import (
 	"github.com/yut-kt/goholiday/nholidays/jp"
 )
 
-func getLocaleJP() *time.Location {
-	locale, err := time.LoadLocation("Asia/Tokyo")
-	if err != nil {
-		panic(err)
-	}
-	return locale
-}
-
 func ExampleGoholiday() {
 	// Japan Schedule
 	ghj := goholiday.New(jp.New())
@@ -31,7 +23,6 @@ func ExampleGoholiday() {
 
 	// Original Schedule
 	mySchedule := nholidays.New(
-		time.Local,
 		map[time.Weekday]struct{}{},
 		map[string]string{"2022-05-01": "my holiday"},
 	)
@@ -52,16 +43,15 @@ func ExampleNew() {
 }
 
 func ExampleGoholiday_IsNationalHoliday() {
-	localeJP := getLocaleJP()
 	targets := []time.Time{
 		// national holiday of weekday"
-		time.Date(2017, 10, 9, 0, 0, 0, 0, localeJP),
+		time.Date(2017, 10, 9, 0, 0, 0, 0, time.Local),
 		// national holiday of holiday
-		time.Date(2017, 9, 23, 0, 0, 0, 0, localeJP),
+		time.Date(2017, 9, 23, 0, 0, 0, 0, time.Local),
 		// business day
-		time.Date(2017, 10, 10, 0, 0, 0, 0, localeJP),
+		time.Date(2017, 10, 10, 0, 0, 0, 0, time.Local),
 		// Sunday
-		time.Date(2017, 9, 24, 0, 0, 0, 0, localeJP),
+		time.Date(2017, 9, 24, 0, 0, 0, 0, time.Local),
 	}
 
 	gh := goholiday.New(jp.New())
@@ -76,16 +66,15 @@ func ExampleGoholiday_IsNationalHoliday() {
 }
 
 func ExampleGoholiday_IsHoliday() {
-	localeJP := getLocaleJP()
 	targets := []time.Time{
 		// national holiday of weekday"
-		time.Date(2017, 10, 9, 0, 0, 0, 0, localeJP),
+		time.Date(2017, 10, 9, 0, 0, 0, 0, time.Local),
 		// national holiday of holiday
-		time.Date(2017, 9, 23, 0, 0, 0, 0, localeJP),
+		time.Date(2017, 9, 23, 0, 0, 0, 0, time.Local),
 		// business day
-		time.Date(2017, 10, 10, 0, 0, 0, 0, localeJP),
+		time.Date(2017, 10, 10, 0, 0, 0, 0, time.Local),
 		// Sunday
-		time.Date(2017, 9, 24, 0, 0, 0, 0, localeJP),
+		time.Date(2017, 9, 24, 0, 0, 0, 0, time.Local),
 	}
 	gh := goholiday.New(jp.New())
 	for _, target := range targets {
@@ -99,16 +88,15 @@ func ExampleGoholiday_IsHoliday() {
 }
 
 func ExampleGoholiday_IsBusinessDay() {
-	localeJP := getLocaleJP()
 	targets := []time.Time{
 		// national holiday of weekday"
-		time.Date(2017, 10, 9, 0, 0, 0, 0, localeJP),
+		time.Date(2017, 10, 9, 0, 0, 0, 0, time.Local),
 		// national holiday of holiday
-		time.Date(2017, 9, 23, 0, 0, 0, 0, localeJP),
+		time.Date(2017, 9, 23, 0, 0, 0, 0, time.Local),
 		// business day
-		time.Date(2017, 10, 10, 0, 0, 0, 0, localeJP),
+		time.Date(2017, 10, 10, 0, 0, 0, 0, time.Local),
 		// Sunday
-		time.Date(2017, 9, 24, 0, 0, 0, 0, localeJP),
+		time.Date(2017, 9, 24, 0, 0, 0, 0, time.Local),
 	}
 	gh := goholiday.New(jp.New())
 	for _, target := range targets {
@@ -122,41 +110,40 @@ func ExampleGoholiday_IsBusinessDay() {
 }
 
 func ExampleGoholiday_BusinessDaysBefore() {
-	localeJP := getLocaleJP()
 	cases := []struct {
 		date   time.Time
 		days   int
 		expect time.Time
 	}{
 		{
-			date:   time.Date(2017, 10, 11, 0, 0, 0, 0, localeJP),
+			date:   time.Date(2017, 10, 11, 0, 0, 0, 0, time.Local),
 			days:   1,
-			expect: time.Date(2017, 10, 10, 0, 0, 0, 0, localeJP),
+			expect: time.Date(2017, 10, 10, 0, 0, 0, 0, time.Local),
 		},
 		{
-			date:   time.Date(2017, 10, 11, 0, 0, 0, 0, localeJP),
+			date:   time.Date(2017, 10, 11, 0, 0, 0, 0, time.Local),
 			days:   2,
-			expect: time.Date(2017, 10, 6, 0, 0, 0, 0, localeJP),
+			expect: time.Date(2017, 10, 6, 0, 0, 0, 0, time.Local),
 		},
 		{
-			date:   time.Date(2017, 10, 10, 0, 0, 0, 0, localeJP),
+			date:   time.Date(2017, 10, 10, 0, 0, 0, 0, time.Local),
 			days:   1,
-			expect: time.Date(2017, 10, 6, 0, 0, 0, 0, localeJP),
+			expect: time.Date(2017, 10, 6, 0, 0, 0, 0, time.Local),
 		},
 		{
-			date:   time.Date(2017, 10, 10, 0, 0, 0, 0, localeJP),
+			date:   time.Date(2017, 10, 10, 0, 0, 0, 0, time.Local),
 			days:   2,
-			expect: time.Date(2017, 10, 5, 0, 0, 0, 0, localeJP),
+			expect: time.Date(2017, 10, 5, 0, 0, 0, 0, time.Local),
 		},
 		{
-			date:   time.Date(2017, 10, 9, 0, 0, 0, 0, localeJP),
+			date:   time.Date(2017, 10, 9, 0, 0, 0, 0, time.Local),
 			days:   1,
-			expect: time.Date(2017, 10, 6, 0, 0, 0, 0, localeJP),
+			expect: time.Date(2017, 10, 6, 0, 0, 0, 0, time.Local),
 		},
 		{
-			date:   time.Date(2017, 10, 8, 0, 0, 0, 0, localeJP),
+			date:   time.Date(2017, 10, 8, 0, 0, 0, 0, time.Local),
 			days:   1,
-			expect: time.Date(2017, 10, 6, 0, 0, 0, 0, localeJP),
+			expect: time.Date(2017, 10, 6, 0, 0, 0, 0, time.Local),
 		},
 	}
 
@@ -174,41 +161,40 @@ func ExampleGoholiday_BusinessDaysBefore() {
 }
 
 func ExampleGoholiday_BusinessDaysAfter() {
-	localeJP := getLocaleJP()
 	cases := []struct {
 		date   time.Time
 		days   int
 		expect time.Time
 	}{
 		{
-			date:   time.Date(2017, 10, 5, 0, 0, 0, 0, localeJP),
+			date:   time.Date(2017, 10, 5, 0, 0, 0, 0, time.Local),
 			days:   1,
-			expect: time.Date(2017, 10, 6, 0, 0, 0, 0, localeJP),
+			expect: time.Date(2017, 10, 6, 0, 0, 0, 0, time.Local),
 		},
 		{
-			date:   time.Date(2017, 10, 5, 0, 0, 0, 0, localeJP),
+			date:   time.Date(2017, 10, 5, 0, 0, 0, 0, time.Local),
 			days:   2,
-			expect: time.Date(2017, 10, 10, 0, 0, 0, 0, localeJP),
+			expect: time.Date(2017, 10, 10, 0, 0, 0, 0, time.Local),
 		},
 		{
-			date:   time.Date(2017, 10, 6, 0, 0, 0, 0, localeJP),
+			date:   time.Date(2017, 10, 6, 0, 0, 0, 0, time.Local),
 			days:   1,
-			expect: time.Date(2017, 10, 10, 0, 0, 0, 0, localeJP),
+			expect: time.Date(2017, 10, 10, 0, 0, 0, 0, time.Local),
 		},
 		{
-			date:   time.Date(2017, 10, 6, 0, 0, 0, 0, localeJP),
+			date:   time.Date(2017, 10, 6, 0, 0, 0, 0, time.Local),
 			days:   2,
-			expect: time.Date(2017, 10, 11, 0, 0, 0, 0, localeJP),
+			expect: time.Date(2017, 10, 11, 0, 0, 0, 0, time.Local),
 		},
 		{
-			date:   time.Date(2017, 10, 7, 0, 0, 0, 0, localeJP),
+			date:   time.Date(2017, 10, 7, 0, 0, 0, 0, time.Local),
 			days:   1,
-			expect: time.Date(2017, 10, 10, 0, 0, 0, 0, localeJP),
+			expect: time.Date(2017, 10, 10, 0, 0, 0, 0, time.Local),
 		},
 		{
-			date:   time.Date(2017, 10, 9, 0, 0, 0, 0, localeJP),
+			date:   time.Date(2017, 10, 9, 0, 0, 0, 0, time.Local),
 			days:   1,
-			expect: time.Date(2017, 10, 10, 0, 0, 0, 0, localeJP),
+			expect: time.Date(2017, 10, 10, 0, 0, 0, 0, time.Local),
 		},
 	}
 
@@ -226,10 +212,9 @@ func ExampleGoholiday_BusinessDaysAfter() {
 }
 
 func ExampleGoholiday_SetUniqueHolidays() {
-	localeJP := getLocaleJP()
 	gh := goholiday.New(jp.New())
 	gh.SetUniqueHolidays([]time.Time{time.Date(2017, 10, 10, 0, 0, 0, 0, time.Local)})
-	date := time.Date(2017, 10, 10, 0, 0, 0, 0, localeJP)
+	date := time.Date(2017, 10, 10, 0, 0, 0, 0, time.Local)
 	fmt.Println(gh.IsHoliday(date))
 	fmt.Println(gh.IsBusinessDay(date))
 	fmt.Println(gh.IsNationalHoliday(date))

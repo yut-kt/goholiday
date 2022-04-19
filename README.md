@@ -7,8 +7,10 @@
 [![GoDoc](https://godoc.org/github.com/yut-kt/goholiday?status.svg)](https://godoc.org/github.com/yut-kt/goholiday)
 [![license](http://img.shields.io/badge/license-MIT-red.svg?style=flat)](LICENSE)
 
-**Functions to calculate and judge about business days in Japan.**
-Now we are dealing with only Japanese holidays but we plan to deal with other national holidays.
+**Provide functions to calculate and judge the business days and holidays in each country.**
+
+Currently, we only handle holidays for a few countries, but we plan to handle holidays for other countries in the future.  
+Please Contribute!
 
 ## Install
 ```bash

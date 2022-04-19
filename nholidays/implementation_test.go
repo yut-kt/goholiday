@@ -3,6 +3,8 @@ package nholidays_test
 import (
 	"testing"
 
+	"github.com/yut-kt/goholiday/nholidays/do"
+
 	"github.com/yut-kt/goholiday/nholidays/am"
 
 	"github.com/yut-kt/goholiday/nholidays/gr"
@@ -17,6 +19,9 @@ import (
 func TestImplementation(t *testing.T) {
 	// am
 	goholiday.New(am.New())
+
+	// do
+	goholiday.New(do.New())
 
 	// gr
 	goholiday.New(gr.New())

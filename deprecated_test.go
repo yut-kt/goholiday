@@ -44,18 +44,6 @@ func TestIsNationalHoliday(t *testing.T) {
 	}
 }
 
-func BenchmarkIsNationalHoliday(b *testing.B) {
-	date := make([]time.Time, b.N)
-	for n := 0; n < b.N; n++ {
-		date[n] = time.Now().AddDate(0, 0, n)
-	}
-	b.ResetTimer()
-
-	for i := 0; i < b.N; i++ {
-		goholiday.IsNationalHoliday(date[i])
-	}
-}
-
 func TestIsHoliday(t *testing.T) {
 	cases := []struct {
 		date     time.Time
@@ -91,18 +79,6 @@ func TestIsHoliday(t *testing.T) {
 	}
 }
 
-func BenchmarkIsHoliday(b *testing.B) {
-	date := make([]time.Time, b.N)
-	for n := 0; n < b.N; n++ {
-		date[n] = time.Now().AddDate(0, 0, n)
-	}
-	b.ResetTimer()
-
-	for i := 0; i < b.N; i++ {
-		goholiday.IsHoliday(date[i])
-	}
-}
-
 func TestIsBusinessDay(t *testing.T) {
 	cases := []struct {
 		date     time.Time
@@ -135,18 +111,6 @@ func TestIsBusinessDay(t *testing.T) {
 		if goholiday.IsBusinessDay(c.date) != c.expect {
 			t.Errorf(errFmt, c.dateType)
 		}
-	}
-}
-
-func BenchmarkIsBusinessDay(b *testing.B) {
-	date := make([]time.Time, b.N)
-	for n := 0; n < b.N; n++ {
-		date[n] = time.Now().AddDate(0, 0, n)
-	}
-	b.ResetTimer()
-
-	for i := 0; i < b.N; i++ {
-		goholiday.IsBusinessDay(date[i])
 	}
 }
 
@@ -195,18 +159,6 @@ func TestBusinessDaysBefore(t *testing.T) {
 	}
 }
 
-func BenchmarkBusinessDaysBefore(b *testing.B) {
-	date := make([]time.Time, b.N)
-	for n := 0; n < b.N; n++ {
-		date[n] = time.Now().AddDate(0, 0, n)
-	}
-	b.ResetTimer()
-
-	for i := 0; i < b.N; i++ {
-		goholiday.BusinessDaysBefore(date[i], i)
-	}
-}
-
 func TestBusinessDaysAfter(t *testing.T) {
 	cases := []struct {
 		date   time.Time
@@ -249,18 +201,6 @@ func TestBusinessDaysAfter(t *testing.T) {
 		if goholiday.BusinessDaysAfter(c.date, c.days).Format("2006-01-02") != c.expect.Format("2006-01-02") {
 			t.Errorf(errFmt, c.date.String())
 		}
-	}
-}
-
-func BenchmarkBusinessDaysAfter(b *testing.B) {
-	date := make([]time.Time, b.N)
-	for n := 0; n < b.N; n++ {
-		date[n] = time.Now().AddDate(0, 0, n)
-	}
-	b.ResetTimer()
-
-	for i := 0; i < b.N; i++ {
-		goholiday.BusinessDaysAfter(date[i], i)
 	}
 }
 

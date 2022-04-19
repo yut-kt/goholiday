@@ -27,6 +27,7 @@ $ go get github.com/yut-kt/goholiday
 ```
 support 2022, 2023
 |- am (Armenia)
+|- do (Dominican Republic)
 |- gr (Greece)
 |- jp (Japan)
 |- sg (Singapore)

@@ -1,8 +1,10 @@
-package goholiday
+package goholiday_test
 
 import (
 	"testing"
 	"time"
+
+	"github.com/yut-kt/goholiday"
 )
 
 const errFmt = "Checking %v is incorrect."
@@ -36,21 +38,9 @@ func TestIsNationalHoliday(t *testing.T) {
 	}
 
 	for _, c := range cases {
-		if IsNationalHoliday(c.date) != c.expect {
+		if goholiday.IsNationalHoliday(c.date) != c.expect {
 			t.Errorf(errFmt, c.dateType)
 		}
-	}
-}
-
-func BenchmarkIsNationalHoliday(b *testing.B) {
-	date := make([]time.Time, b.N)
-	for n := 0; n < b.N; n++ {
-		date[n] = time.Now().AddDate(0, 0, n)
-	}
-	b.ResetTimer()
-
-	for i := 0; i < b.N; i++ {
-		IsNationalHoliday(date[i])
 	}
 }
 
@@ -83,21 +73,9 @@ func TestIsHoliday(t *testing.T) {
 	}
 
 	for _, c := range cases {
-		if IsHoliday(c.date) != c.expect {
+		if goholiday.IsHoliday(c.date) != c.expect {
 			t.Errorf(errFmt, c.dateType)
 		}
-	}
-}
-
-func BenchmarkIsHoliday(b *testing.B) {
-	date := make([]time.Time, b.N)
-	for n := 0; n < b.N; n++ {
-		date[n] = time.Now().AddDate(0, 0, n)
-	}
-	b.ResetTimer()
-
-	for i := 0; i < b.N; i++ {
-		IsHoliday(date[i])
 	}
 }
 
@@ -130,21 +108,9 @@ func TestIsBusinessDay(t *testing.T) {
 	}
 
 	for _, c := range cases {
-		if IsBusinessDay(c.date) != c.expect {
+		if goholiday.IsBusinessDay(c.date) != c.expect {
 			t.Errorf(errFmt, c.dateType)
 		}
-	}
-}
-
-func BenchmarkIsBusinessDay(b *testing.B) {
-	date := make([]time.Time, b.N)
-	for n := 0; n < b.N; n++ {
-		date[n] = time.Now().AddDate(0, 0, n)
-	}
-	b.ResetTimer()
-
-	for i := 0; i < b.N; i++ {
-		IsBusinessDay(date[i])
 	}
 }
 
@@ -187,21 +153,9 @@ func TestBusinessDaysBefore(t *testing.T) {
 	}
 
 	for _, c := range cases {
-		if BusinessDaysBefore(c.date, c.days).Format(dFmt) != c.expect.Format(dFmt) {
+		if goholiday.BusinessDaysBefore(c.date, c.days).Format("2006-01-02") != c.expect.Format("2006-01-02") {
 			t.Errorf(errFmt, c.date.String())
 		}
-	}
-}
-
-func BenchmarkBusinessDaysBefore(b *testing.B) {
-	date := make([]time.Time, b.N)
-	for n := 0; n < b.N; n++ {
-		date[n] = time.Now().AddDate(0, 0, n)
-	}
-	b.ResetTimer()
-
-	for i := 0; i < b.N; i++ {
-		BusinessDaysBefore(date[i], i)
 	}
 }
 
@@ -244,42 +198,28 @@ func TestBusinessDaysAfter(t *testing.T) {
 	}
 
 	for _, c := range cases {
-		if BusinessDaysAfter(c.date, c.days).Format(dFmt) != c.expect.Format(dFmt) {
+		if goholiday.BusinessDaysAfter(c.date, c.days).Format("2006-01-02") != c.expect.Format("2006-01-02") {
 			t.Errorf(errFmt, c.date.String())
 		}
 	}
 }
 
-func BenchmarkBusinessDaysAfter(b *testing.B) {
-	date := make([]time.Time, b.N)
-	for n := 0; n < b.N; n++ {
-		date[n] = time.Now().AddDate(0, 0, n)
-	}
-	b.ResetTimer()
-
-	for i := 0; i < b.N; i++ {
-		BusinessDaysAfter(date[i], i)
-	}
-}
-
 // set unique holidays
 func TestIsHolidayUnique(t *testing.T) {
-	SetUniqueHolidays([]time.Time{time.Date(2017, 10, 10, 0, 0, 0, 0, time.Local)})
+	goholiday.SetUniqueHolidays([]time.Time{time.Date(2017, 10, 10, 0, 0, 0, 0, time.Local)})
 
 	date := time.Date(2017, 10, 10, 0, 0, 0, 0, time.Local)
-	expect := true
-	if IsHoliday(date) != expect {
+	if !goholiday.IsHoliday(date) {
 		t.Errorf(errFmt, "unique holiday")
 	}
 }
 
 // set unique holidays
 func TestIsBusinessDayUnique(t *testing.T) {
-	SetUniqueHolidays([]time.Time{time.Date(2017, 10, 10, 0, 0, 0, 0, time.Local)})
+	goholiday.SetUniqueHolidays([]time.Time{time.Date(2017, 10, 10, 0, 0, 0, 0, time.Local)})
 
 	date := time.Date(2017, 10, 10, 0, 0, 0, 0, time.Local)
-	expect := false
-	if IsBusinessDay(date) != expect {
+	if goholiday.IsBusinessDay(date) {
 		t.Errorf(errFmt, "unique holiday")
 	}
 }
@@ -291,7 +231,7 @@ func TestBusinessDaysBeforeUnique(t *testing.T) {
 		time.Date(2017, 10, 6, 0, 0, 0, 0, time.Local),
 		time.Date(2017, 10, 10, 0, 0, 0, 0, time.Local),
 	}
-	SetUniqueHolidays(uhs)
+	goholiday.SetUniqueHolidays(uhs)
 
 	cases := []struct {
 		date   time.Time
@@ -331,7 +271,7 @@ func TestBusinessDaysBeforeUnique(t *testing.T) {
 	}
 
 	for _, c := range cases {
-		if BusinessDaysBefore(c.date, c.days).Format(dFmt) != c.expect.Format(dFmt) {
+		if goholiday.BusinessDaysBefore(c.date, c.days).Format("2006-01-02") != c.expect.Format("2006-01-02") {
 			t.Errorf(errFmt, c.date.String())
 		}
 	}
@@ -344,7 +284,7 @@ func TestBusinessDaysAfterUnique(t *testing.T) {
 		time.Date(2017, 10, 12, 0, 0, 0, 0, time.Local),
 		time.Date(2017, 10, 13, 0, 0, 0, 0, time.Local),
 	}
-	SetUniqueHolidays(uhs)
+	goholiday.SetUniqueHolidays(uhs)
 
 	cases := []struct {
 		date   time.Time
@@ -384,7 +324,7 @@ func TestBusinessDaysAfterUnique(t *testing.T) {
 	}
 
 	for _, c := range cases {
-		if BusinessDaysAfter(c.date, c.days).Format(dFmt) != c.expect.Format(dFmt) {
+		if goholiday.BusinessDaysAfter(c.date, c.days).Format("2006-01-02") != c.expect.Format("2006-01-02") {
 			t.Errorf(errFmt, c.date.String())
 		}
 	}

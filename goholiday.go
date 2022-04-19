@@ -59,8 +59,9 @@ func (g *Goholiday) BusinessDaysAfter(t time.Time, bds int) time.Time {
 }
 
 func (g *Goholiday) travelBusinessDays(t time.Time, bds int, course int) time.Time {
+	duration := time.Hour * 24 * time.Duration(course)
 	for tbds := 0; tbds != bds; {
-		if t = t.AddDate(0, 0, course); !g.IsHoliday(t) {
+		if t = t.Add(duration); !g.IsHoliday(t) {
 			tbds++
 		}
 	}

@@ -19,8 +19,10 @@ Please Contribute!
 $ go install github.com/yut-kt/goholiday
 ```
 
-## Usage
+## Suggested golang environment
+go version >= 1.16.15
 
+## Usage
 - version >= v1.0.0
   - look at [example test file](https://github.com/yut-kt/goholiday/blob/master/goholiday_example_test.go) or [godoc example](https://godoc.org/github.com/yut-kt/goholiday)
 

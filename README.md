@@ -7,6 +7,8 @@
 [![GoDoc](https://godoc.org/github.com/yut-kt/goholiday?status.svg)](https://godoc.org/github.com/yut-kt/goholiday)
 [![license](http://img.shields.io/badge/license-MIT-red.svg?style=flat)](LICENSE)
 
+**Calculating (holiday, business) days support for golang (Go language).**
+
 **Provide functions to calculate and judge the business days and holidays in each country.**
 
 Currently, we only handle holidays for a few countries, but we plan to handle holidays for other countries in the future.  
@@ -17,10 +19,12 @@ Please Contribute!
 $ go install github.com/yut-kt/goholiday
 ```
 
-## Usage
+## Suggested golang environment
+go version >= 1.16.15
 
-- version >= v1.x.x
-  - look at [example](https://github.com/yut-kt/goholiday/blob/master/goholiday_example_test.go)
+## Usage
+- version >= v1.0.0
+  - look at [example test file](https://github.com/yut-kt/goholiday/blob/master/goholiday_example_test.go) or [godoc example](https://godoc.org/github.com/yut-kt/goholiday)
 
 - version = v0.x.x (deprecated)
   - look at [docs/v0.md](docs/v0.md)

@@ -10,45 +10,39 @@ import (
 
 var jpHoliday = Goholiday{jp.New(), map[string]struct{}{}}
 
+// Deprecated: Moved to Goholiday instance (goholiday.go).
 // SetUniqueHolidays is a function to set unique holidays.
-// deprecated:
-// Moved to goholiday.go
 func SetUniqueHolidays(ts []time.Time) {
 	jpHoliday.uniqueHolidays = map[string]struct{}{}
 	jpHoliday.SetUniqueHolidays(ts)
 }
 
+// Deprecated: Moved to Goholiday instance (goholiday.go).
 // IsNationalHoliday is a function to decide whether t given national holiday.
-// deprecated:
-// Moved to goholiday.go
 func IsNationalHoliday(t time.Time) bool {
 	return jpHoliday.IsNationalHoliday(t)
 }
 
+// Deprecated: Moved to Goholiday instance (goholiday.go).
 // IsHoliday is a function to decide whether t given holiday.
-// deprecated:
-// Moved to goholiday.go
 func IsHoliday(t time.Time) bool {
 	return jpHoliday.IsHoliday(t)
 }
 
+// Deprecated: Moved to Goholiday instance (goholiday.go).
 // IsBusinessDay is a function to decide whether t given business day.
-// deprecated:
-// Moved to goholiday.go
 func IsBusinessDay(t time.Time) bool {
 	return jpHoliday.IsBusinessDay(t)
 }
 
+// Deprecated: Moved to Goholiday instance (goholiday.go).
 // BusinessDaysBefore is a function that calculates bds business days before given t
-// deprecated:
-// Moved to goholiday.go
 func BusinessDaysBefore(t time.Time, bds int) time.Time {
 	return jpHoliday.BusinessDaysBefore(t, bds)
 }
 
+// Deprecated: Moved to Goholiday instance (goholiday.go).
 // BusinessDaysAfter is a function that calculates bds business days after given t
-// deprecated:
-// Moved to goholiday.go
 func BusinessDaysAfter(t time.Time, bds int) time.Time {
 	return jpHoliday.BusinessDaysAfter(t, bds)
 }

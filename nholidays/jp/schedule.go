@@ -11,13 +11,18 @@ type ScheduleImpl struct {
 	location         *time.Location
 }
 
-func New() *ScheduleImpl {
+func New() *nholidays.ScheduleImpl {
 	loc, err := time.LoadLocation("Asia/Tokyo")
 	if err != nil {
 		panic(err)
 	}
-	return &ScheduleImpl{
-		nationalHolidays: map[string]string{
+	return nholidays.New(
+		loc,
+		map[time.Weekday]struct{}{
+			time.Saturday: {},
+			time.Sunday:   {},
+		},
+		map[string]string{
 			"2000-01-01": "元日",
 			"2000-01-10": "成人の日",
 			"2000-02-11": "建国記念の日",

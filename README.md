@@ -1,6 +1,6 @@
 # goholiday
 
-[![v1.0.5](https://img.shields.io/github/v/release/yut-kt/goholiday?logoColor=ff69b4&style=social)]()
+[![v1.0.6](https://img.shields.io/github/v/release/yut-kt/goholiday?logoColor=ff69b4&style=social)]()
 [![Test](https://github.com/yut-kt/goholiday/actions/workflows/default_branch_test.yaml/badge.svg)](https://github.com/yut-kt/goholiday/actions/workflows/default_branch_test.yaml)
 [![coverage](https://img.shields.io/badge/coverage-100%25-green.svg)]()
 [![Go Report Card](https://goreportcard.com/badge/github.com/yut-kt/goholiday)](https://goreportcard.com/report/github.com/yut-kt/goholiday)  
@@ -24,7 +24,7 @@ go version >= 1.16.15
 
 ## Usage
 - version >= v1.0.0
-  - look at [example test file](https://github.com/yut-kt/goholiday/blob/master/goholiday_example_test.go) or [godoc example](https://godoc.org/github.com/yut-kt/goholiday)
+  - look at [example test file](https://github.com/yut-kt/goholiday/blob/main/goholiday_example_test.go) or [godoc example](https://godoc.org/github.com/yut-kt/goholiday)
 
 - version = v0.x.x (deprecated)
   - look at [docs/v0.md](docs/v0.md)

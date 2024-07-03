@@ -1,6 +1,6 @@
 # goholiday
 
-[![v1.0.5](https://img.shields.io/github/v/release/yut-kt/goholiday?logoColor=ff69b4&style=social)]()
+[![v1.0.6](https://img.shields.io/github/v/release/yut-kt/goholiday?logoColor=ff69b4&style=social)]()
 [![Test](https://github.com/yut-kt/goholiday/actions/workflows/default_branch_test.yaml/badge.svg)](https://github.com/yut-kt/goholiday/actions/workflows/default_branch_test.yaml)
 [![coverage](https://img.shields.io/badge/coverage-100%25-green.svg)]()
 [![Go Report Card](https://goreportcard.com/badge/github.com/yut-kt/goholiday)](https://goreportcard.com/report/github.com/yut-kt/goholiday)  

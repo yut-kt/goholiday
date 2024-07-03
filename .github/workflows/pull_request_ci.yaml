@@ -1,12 +1,9 @@
 name: Pull Request CI
 
-on:
-  pull_request:
-    branches: [ master, v* ]
+on: pull_request
 
 jobs:
-
-  build:
+  ci:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4

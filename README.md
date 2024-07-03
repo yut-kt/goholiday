@@ -24,7 +24,7 @@ go version >= 1.16.15
 
 ## Usage
 - version >= v1.0.0
-  - look at [example test file](https://github.com/yut-kt/goholiday/blob/master/goholiday_example_test.go) or [godoc example](https://godoc.org/github.com/yut-kt/goholiday)
+  - look at [example test file](https://github.com/yut-kt/goholiday/blob/main/goholiday_example_test.go) or [godoc example](https://godoc.org/github.com/yut-kt/goholiday)
 
 - version = v0.x.x (deprecated)
   - look at [docs/v0.md](docs/v0.md)

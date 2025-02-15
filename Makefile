@@ -12,6 +12,4 @@ cov:
 	go test -cover
 
 fmt:
-	gofmt -l -s -w .
-	goimports -w .
 	golangci-lint run ./...

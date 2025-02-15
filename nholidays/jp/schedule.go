@@ -3,21 +3,19 @@
 
 package jp
 
-import "time"
+import (
+	"time"
 
-type ScheduleImpl struct {
-	nationalHolidays map[string]string
-	weekdayHolidays  map[time.Weekday]struct{}
-	location         *time.Location
-}
+	"github.com/yut-kt/goholiday/nholidays"
+)
 
-func New() *ScheduleImpl {
-	loc, err := time.LoadLocation("Asia/Tokyo")
-	if err != nil {
-		panic(err)
-	}
-	return &ScheduleImpl{
-		nationalHolidays: map[string]string{
+func New() *nholidays.ScheduleImpl {
+	return nholidays.New(
+		map[time.Weekday]struct{}{
+			time.Saturday: {},
+			time.Sunday:   {},
+		},
+		map[string]string{
 			"2000-01-01": "元日",
 			"2000-01-10": "成人の日",
 			"2000-02-11": "建国記念の日",
@@ -488,22 +486,5 @@ func New() *ScheduleImpl {
 			"2026-11-03": "文化の日",
 			"2026-11-23": "勤労感謝の日",
 		},
-		weekdayHolidays: map[time.Weekday]struct{}{
-			time.Saturday: {},
-			time.Sunday:   {},
-		},
-		location: loc,
-	}
-}
-
-func (s *ScheduleImpl) GetNationalHolidays() map[string]string {
-	return s.nationalHolidays
-}
-
-func (s *ScheduleImpl) GetWeekdayHolidays() map[time.Weekday]struct{} {
-	return s.weekdayHolidays
-}
-
-func (s *ScheduleImpl) GetLocation() *time.Location {
-	return s.location
+	)
 }

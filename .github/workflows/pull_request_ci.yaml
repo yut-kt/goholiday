@@ -1,25 +1,22 @@
 name: Pull Request CI
 
-on:
-  pull_request:
-    branches: [ master, v* ]
+on: pull_request
 
 jobs:
-
-  build:
+  ci:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: Set up Go
-      uses: actions/setup-go@v2
+      uses: actions/setup-go@v5
       with:
-        go-version: 1.16
+        go-version-file: go.mod
 
     - name: Test
       run: make test
 
     - name: golangci-lint
-      uses: golangci/golangci-lint-action@v2
+      uses: golangci/golangci-lint-action@v6
       with:
         version: latest
